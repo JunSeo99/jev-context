@@ -1,0 +1,570 @@
+{
+  "schema_version": 1,
+  "source_sha256": "9c3744d4dec25659d6fdfadd52923c8357a5a10207f37aa8452ccb424091f01f",
+  "policy": {
+    "evidence_threshold": 0.45,
+    "constraint_threshold": 0.3,
+    "conflict_threshold": 0.65,
+    "max_context_chars": 24000,
+    "block_chars": 2400,
+    "workers": 4,
+    "short_source_chars": 1600
+  },
+  "tokenizer": "cl100k_base (comparison proxy, not Jev tokenizer)",
+  "aggregate": {
+    "baseline_snippets": {
+      "covered": 51,
+      "obligations": 56,
+      "micro_recall": 0.9107142857142857,
+      "all_critical_tasks": 4,
+      "tasks": 8,
+      "context_tokens": 31814
+    },
+    "baseline_full": {
+      "covered": 52,
+      "obligations": 56,
+      "micro_recall": 0.9285714285714286,
+      "all_critical_tasks": 5,
+      "tasks": 8,
+      "context_tokens": 55162
+    },
+    "all_sources": {
+      "covered": 56,
+      "obligations": 56,
+      "micro_recall": 1.0,
+      "all_critical_tasks": 8,
+      "tasks": 8,
+      "context_tokens": 2738339
+    },
+    "ranges": {
+      "covered": 37,
+      "obligations": 56,
+      "micro_recall": 0.6607142857142857,
+      "all_critical_tasks": 0,
+      "tasks": 8,
+      "context_tokens": 39775
+    },
+    "supplement": {
+      "covered": 50,
+      "obligations": 56,
+      "micro_recall": 0.8928571428571429,
+      "all_critical_tasks": 5,
+      "tasks": 8,
+      "context_tokens": 67823
+    },
+    "combined": {
+      "covered": 37,
+      "obligations": 56,
+      "micro_recall": 0.6607142857142857,
+      "all_critical_tasks": 1,
+      "tasks": 8,
+      "context_tokens": 68337
+    }
+  },
+  "cases": [
+    {
+      "id": "external-01",
+      "kind": "code",
+      "candidate_count": 27,
+      "error_counts": {
+        "excluded_secret": 1,
+        "empty": 1
+      },
+      "usage": {
+        "input_tokens": 649195,
+        "requests": 83,
+        "cache_hits": 0,
+        "models": [
+          "jev-1.13.0"
+        ],
+        "seconds": 20.807,
+        "failed_requests": 0
+      },
+      "outputs": {
+        "baseline_snippets": {
+          "recall": 1.0,
+          "obligations": 6,
+          "all_critical": true,
+          "context_tokens": 1743,
+          "context_chars": 5647
+        },
+        "baseline_full": {
+          "recall": 1.0,
+          "obligations": 6,
+          "all_critical": true,
+          "context_tokens": 4485,
+          "context_chars": 14958
+        },
+        "all_sources": {
+          "recall": 1.0,
+          "obligations": 6,
+          "all_critical": true,
+          "context_tokens": 303070,
+          "context_chars": 667216
+        },
+        "ranges": {
+          "recall": 0.6666666666666666,
+          "obligations": 6,
+          "all_critical": false,
+          "context_tokens": 1581,
+          "context_chars": 5173
+        },
+        "supplement": {
+          "recall": 1.0,
+          "obligations": 6,
+          "all_critical": true,
+          "context_tokens": 6549,
+          "context_chars": 20448
+        },
+        "combined": {
+          "recall": 0.6666666666666666,
+          "obligations": 6,
+          "all_critical": false,
+          "context_tokens": 3579,
+          "context_chars": 10413
+        }
+      }
+    },
+    {
+      "id": "external-02",
+      "kind": "code",
+      "candidate_count": 29,
+      "error_counts": {
+        "excluded_secret": 1,
+        "empty": 1
+      },
+      "usage": {
+        "input_tokens": 663443,
+        "requests": 86,
+        "cache_hits": 0,
+        "models": [
+          "jev-1.13.0"
+        ],
+        "seconds": 18.664,
+        "failed_requests": 0
+      },
+      "outputs": {
+        "baseline_snippets": {
+          "recall": 0.875,
+          "obligations": 8,
+          "all_critical": false,
+          "context_tokens": 5395,
+          "context_chars": 18652
+        },
+        "baseline_full": {
+          "recall": 1.0,
+          "obligations": 8,
+          "all_critical": true,
+          "context_tokens": 10905,
+          "context_chars": 36394
+        },
+        "all_sources": {
+          "recall": 1.0,
+          "obligations": 8,
+          "all_critical": true,
+          "context_tokens": 306633,
+          "context_chars": 677081
+        },
+        "ranges": {
+          "recall": 0.25,
+          "obligations": 8,
+          "all_critical": false,
+          "context_tokens": 5611,
+          "context_chars": 17803
+        },
+        "supplement": {
+          "recall": 0.5,
+          "obligations": 8,
+          "all_critical": false,
+          "context_tokens": 7307,
+          "context_chars": 23624
+        },
+        "combined": {
+          "recall": 0.25,
+          "obligations": 8,
+          "all_critical": false,
+          "context_tokens": 8757,
+          "context_chars": 23886
+        }
+      }
+    },
+    {
+      "id": "external-03",
+      "kind": "code",
+      "candidate_count": 26,
+      "error_counts": {
+        "excluded_secret": 1,
+        "empty": 1
+      },
+      "usage": {
+        "input_tokens": 641080,
+        "requests": 82,
+        "cache_hits": 0,
+        "models": [
+          "jev-1.13.0"
+        ],
+        "seconds": 18.454,
+        "failed_requests": 0
+      },
+      "outputs": {
+        "baseline_snippets": {
+          "recall": 1.0,
+          "obligations": 5,
+          "all_critical": true,
+          "context_tokens": 1293,
+          "context_chars": 4073
+        },
+        "baseline_full": {
+          "recall": 1.0,
+          "obligations": 5,
+          "all_critical": true,
+          "context_tokens": 3249,
+          "context_chars": 9784
+        },
+        "all_sources": {
+          "recall": 1.0,
+          "obligations": 5,
+          "all_critical": true,
+          "context_tokens": 301358,
+          "context_chars": 662856
+        },
+        "ranges": {
+          "recall": 0.6,
+          "obligations": 5,
+          "all_critical": false,
+          "context_tokens": 1595,
+          "context_chars": 4835
+        },
+        "supplement": {
+          "recall": 1.0,
+          "obligations": 5,
+          "all_critical": true,
+          "context_tokens": 3527,
+          "context_chars": 10688
+        },
+        "combined": {
+          "recall": 0.6,
+          "obligations": 5,
+          "all_critical": false,
+          "context_tokens": 2177,
+          "context_chars": 6281
+        }
+      }
+    },
+    {
+      "id": "external-04",
+      "kind": "code",
+      "candidate_count": 26,
+      "error_counts": {
+        "excluded_secret": 1,
+        "empty": 1
+      },
+      "usage": {
+        "input_tokens": 649984,
+        "requests": 83,
+        "cache_hits": 0,
+        "models": [
+          "jev-1.13.0"
+        ],
+        "seconds": 19.121,
+        "failed_requests": 0
+      },
+      "outputs": {
+        "baseline_snippets": {
+          "recall": 0.8571428571428571,
+          "obligations": 7,
+          "all_critical": false,
+          "context_tokens": 1876,
+          "context_chars": 6472
+        },
+        "baseline_full": {
+          "recall": 0.8571428571428571,
+          "obligations": 7,
+          "all_critical": false,
+          "context_tokens": 3700,
+          "context_chars": 12464
+        },
+        "all_sources": {
+          "recall": 1.0,
+          "obligations": 7,
+          "all_critical": true,
+          "context_tokens": 301403,
+          "context_chars": 662943
+        },
+        "ranges": {
+          "recall": 0.7142857142857143,
+          "obligations": 7,
+          "all_critical": false,
+          "context_tokens": 3287,
+          "context_chars": 10722
+        },
+        "supplement": {
+          "recall": 0.8571428571428571,
+          "obligations": 7,
+          "all_critical": false,
+          "context_tokens": 5061,
+          "context_chars": 16016
+        },
+        "combined": {
+          "recall": 0.7142857142857143,
+          "obligations": 7,
+          "all_critical": false,
+          "context_tokens": 4585,
+          "context_chars": 14032
+        }
+      }
+    },
+    {
+      "id": "external-05",
+      "kind": "code",
+      "candidate_count": 27,
+      "error_counts": {
+        "excluded_secret": 1,
+        "empty": 1
+      },
+      "usage": {
+        "input_tokens": 652732,
+        "requests": 84,
+        "cache_hits": 0,
+        "models": [
+          "jev-1.13.0"
+        ],
+        "seconds": 18.651,
+        "failed_requests": 0
+      },
+      "outputs": {
+        "baseline_snippets": {
+          "recall": 1.0,
+          "obligations": 7,
+          "all_critical": true,
+          "context_tokens": 2489,
+          "context_chars": 7402
+        },
+        "baseline_full": {
+          "recall": 1.0,
+          "obligations": 7,
+          "all_critical": true,
+          "context_tokens": 4102,
+          "context_chars": 12164
+        },
+        "all_sources": {
+          "recall": 1.0,
+          "obligations": 7,
+          "all_critical": true,
+          "context_tokens": 303651,
+          "context_chars": 668812
+        },
+        "ranges": {
+          "recall": 0.7142857142857143,
+          "obligations": 7,
+          "all_critical": false,
+          "context_tokens": 2237,
+          "context_chars": 6812
+        },
+        "supplement": {
+          "recall": 1.0,
+          "obligations": 7,
+          "all_critical": true,
+          "context_tokens": 6454,
+          "context_chars": 17701
+        },
+        "combined": {
+          "recall": 0.7142857142857143,
+          "obligations": 7,
+          "all_critical": false,
+          "context_tokens": 4527,
+          "context_chars": 12094
+        }
+      }
+    },
+    {
+      "id": "external-06",
+      "kind": "docs",
+      "candidate_count": 170,
+      "error_counts": {},
+      "usage": {
+        "input_tokens": 1116248,
+        "requests": 195,
+        "cache_hits": 0,
+        "models": [
+          "jev-1.13.0"
+        ],
+        "seconds": 14.819,
+        "failed_requests": 0
+      },
+      "outputs": {
+        "baseline_snippets": {
+          "recall": 0.8571428571428571,
+          "obligations": 7,
+          "all_critical": false,
+          "context_tokens": 3777,
+          "context_chars": 5004
+        },
+        "baseline_full": {
+          "recall": 0.8571428571428571,
+          "obligations": 7,
+          "all_critical": false,
+          "context_tokens": 4669,
+          "context_chars": 6465
+        },
+        "all_sources": {
+          "recall": 1.0,
+          "obligations": 7,
+          "all_critical": true,
+          "context_tokens": 407408,
+          "context_chars": 534829
+        },
+        "ranges": {
+          "recall": 0.8571428571428571,
+          "obligations": 7,
+          "all_critical": false,
+          "context_tokens": 4213,
+          "context_chars": 5948
+        },
+        "supplement": {
+          "recall": 0.8571428571428571,
+          "obligations": 7,
+          "all_critical": false,
+          "context_tokens": 13331,
+          "context_chars": 22127
+        },
+        "combined": {
+          "recall": 0.8571428571428571,
+          "obligations": 7,
+          "all_critical": false,
+          "context_tokens": 13953,
+          "context_chars": 22880
+        }
+      }
+    },
+    {
+      "id": "external-07",
+      "kind": "docs",
+      "candidate_count": 170,
+      "error_counts": {},
+      "usage": {
+        "input_tokens": 1110685,
+        "requests": 195,
+        "cache_hits": 0,
+        "models": [
+          "jev-1.13.0"
+        ],
+        "seconds": 14.337,
+        "failed_requests": 0
+      },
+      "outputs": {
+        "baseline_snippets": {
+          "recall": 0.75,
+          "obligations": 8,
+          "all_critical": false,
+          "context_tokens": 8870,
+          "context_chars": 11892
+        },
+        "baseline_full": {
+          "recall": 0.75,
+          "obligations": 8,
+          "all_critical": false,
+          "context_tokens": 10675,
+          "context_chars": 14085
+        },
+        "all_sources": {
+          "recall": 1.0,
+          "obligations": 8,
+          "all_critical": true,
+          "context_tokens": 407408,
+          "context_chars": 534829
+        },
+        "ranges": {
+          "recall": 0.75,
+          "obligations": 8,
+          "all_critical": false,
+          "context_tokens": 10352,
+          "context_chars": 13903
+        },
+        "supplement": {
+          "recall": 1.0,
+          "obligations": 8,
+          "all_critical": true,
+          "context_tokens": 15447,
+          "context_chars": 23397
+        },
+        "combined": {
+          "recall": 1.0,
+          "obligations": 8,
+          "all_critical": true,
+          "context_tokens": 14792,
+          "context_chars": 22581
+        }
+      }
+    },
+    {
+      "id": "external-08",
+      "kind": "docs",
+      "candidate_count": 170,
+      "error_counts": {},
+      "usage": {
+        "input_tokens": 1130494,
+        "requests": 195,
+        "cache_hits": 0,
+        "models": [
+          "jev-1.13.0"
+        ],
+        "seconds": 15.044,
+        "failed_requests": 0
+      },
+      "outputs": {
+        "baseline_snippets": {
+          "recall": 1.0,
+          "obligations": 8,
+          "all_critical": true,
+          "context_tokens": 6371,
+          "context_chars": 8064
+        },
+        "baseline_full": {
+          "recall": 1.0,
+          "obligations": 8,
+          "all_critical": true,
+          "context_tokens": 13377,
+          "context_chars": 16257
+        },
+        "all_sources": {
+          "recall": 1.0,
+          "obligations": 8,
+          "all_critical": true,
+          "context_tokens": 407408,
+          "context_chars": 534829
+        },
+        "ranges": {
+          "recall": 0.75,
+          "obligations": 8,
+          "all_critical": false,
+          "context_tokens": 10899,
+          "context_chars": 14254
+        },
+        "supplement": {
+          "recall": 1.0,
+          "obligations": 8,
+          "all_critical": true,
+          "context_tokens": 10147,
+          "context_chars": 16060
+        },
+        "combined": {
+          "recall": 0.5,
+          "obligations": 8,
+          "all_critical": false,
+          "context_tokens": 15967,
+          "context_chars": 22592
+        }
+      }
+    }
+  ],
+  "raw_artifact_sha256": "bb4590a2c9184f1cd37c8e9f0d8d60036bfd25604b4802b10befaaa3c38c64c0",
+  "limitations": [
+    "Raw private sources, queries, quotes and paths are intentionally omitted.",
+    "Evidence selection only; no claims of executed code correctness.",
+    "Independent author used historical commit messages and diff statistics for code-task formulation.",
+    "Baseline frozen before gold by same independent preparation agent; not an independent second gold rater.",
+    "Final label review was interrupted by an account usage limit. Exact quoted evidence was validated locally.",
+    "v3 is a post-evaluation repair on these cases, not a fresh held-out performance estimate."
+  ]
+}

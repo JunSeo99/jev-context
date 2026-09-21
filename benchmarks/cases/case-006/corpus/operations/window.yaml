@@ -1,0 +1,14 @@
+maintenance:
+  date: 2026-07-18
+  timezone: Asia/Seoul
+  start: "02:00"
+  end: "02:30"
+  component: search
+  region: ap-northeast
+  status_page: https://status.example.test
+updates:
+  interval_minutes: 15
+  final_update_after_validation: true
+staff:
+  rotation: search-primary
+  backup_rotation: platform-secondary

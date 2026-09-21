@@ -1,0 +1,53 @@
+{
+  "method": "BM25, k1=1.2, b=0.75, three files/two blocks each; not an agent baseline",
+  "task_sha256": "e964d7cb4473ba90d521230c60f2b47628f3d4148eaa37fed7e678721857528d",
+  "paths": [
+    "docs/lifecycle.md",
+    "docs/delivery.md",
+    "docs/receiver-guide.md"
+  ],
+  "selected": [
+    {
+      "path": "docs/lifecycle.md",
+      "start_line": 1,
+      "end_line": 10,
+      "reason": "fixed BM25 top blocks",
+      "score": 24.247462162166162
+    },
+    {
+      "path": "docs/lifecycle.md",
+      "start_line": 11,
+      "end_line": 15,
+      "reason": "fixed BM25 top blocks",
+      "score": 9.66521736984435
+    },
+    {
+      "path": "docs/delivery.md",
+      "start_line": 1,
+      "end_line": 12,
+      "reason": "fixed BM25 top blocks",
+      "score": 15.326225207200675
+    },
+    {
+      "path": "docs/delivery.md",
+      "start_line": 13,
+      "end_line": 17,
+      "reason": "fixed BM25 top blocks",
+      "score": 11.640030292411687
+    },
+    {
+      "path": "docs/receiver-guide.md",
+      "start_line": 10,
+      "end_line": 15,
+      "reason": "fixed BM25 top blocks",
+      "score": 8.889490442193827
+    },
+    {
+      "path": "docs/receiver-guide.md",
+      "start_line": 16,
+      "end_line": 19,
+      "reason": "fixed BM25 top blocks",
+      "score": 8.597997694259082
+    }
+  ]
+}

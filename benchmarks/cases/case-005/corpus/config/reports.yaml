@@ -1,0 +1,14 @@
+cache:
+  ttl_seconds: 300
+  key_version: 2
+  enabled: true
+reports:
+  currency: KRW
+  closed_month_editable: false
+  max_months_per_request: 1
+interface:
+  page_size: 50
+  show_sparklines: true
+  empty_state: no_rows
+schedule:
+  reconciliation_hour_utc: 2

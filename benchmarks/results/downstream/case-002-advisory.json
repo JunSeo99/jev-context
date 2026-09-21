@@ -1,0 +1,55 @@
+{
+  "result": "**결정**\n\n1. **읽는 위치:** return_to는 콜백 query에서 읽지 않고, 교환한 attempt에 저장된 값에서 읽습니다(docs/navigation.md:4-5). 지금 코드는 query 값을 `unquote`해서 그대로 redirect하므로 바꿔야 합니다(auth/callback.py:5-11).\n2. **현재 테넌트 상대 경로:** `/` 하나로 시작하면 허용합니다. `//`로 시작하는 주소, 역슬래시, 제어문자는 거부합니다. 디코딩은 한 번만 하고, 디코딩한 결과에도 같은 검사를 적용합니다(docs/navigation.md:6-8).\n3. **기존 portal 북마크:** 현재 `legacy_enabled: true`입니다(config/entrypoints.yaml:3-5). 이때 `https://portal.example.test/teams/{tenant}/...` 형태만 예외로 둡니다. `{tenant}`가 세션의 tenant와 정확히 같아야 하며, 이 경우 `/teams/{tenant}/...` 상대 경로로 바꿔 이동합니다. 포트, 사용자 정보, http 같은 다른 프로토콜이 붙으면 예외가 아닙니다(docs/navigation.md:11-16).\n4. **다른 테넌트 절대 URL:** 거부합니다. 절대 URL은 원칙적으로 거부 대상이고, tenant가 일치하지 않아 예외 조건도 충족하지 못합니다(docs/navigation.md:9, 13; docs/support.md:7).\n5. **실패 처리:** `/workspace`로 보내되 로그인은 유지합니다(docs/navigation.md:18; config/entrypoints.yaml:2; docs/support.md:4).\n\n**로그**\n거부 이유 코드와 attempt 식별자만 남깁니다. 원문 URL, query, ticket, sid, return_to 원문은 오류 메시지와 수동 재현 로그에도 넣지 않습니다(docs/telemetry.md:4-7). 2024년에 쓰던 원문 로그와 http 허용 방식은 현재 기준이 아닙니다(notes/2024-login.md:4-8).\n\n**북마크 영향**\n몇 개가 영향을 받는지는 산정할 수 없습니다. 북마크 사용량과 tenant별 분포를 수집하지 않았기 때문입니다(docs/support.md:11-13). 다른 tenant, http, 포트, 사용자 정보가 붙은 북마크와 `/teams/` 밖의 portal 경로는 `/workspace`로 이동합니다.\n\n**자료에 없는 정보**\n- 거부 이유 코드 목록\n- 상대 경로가 현재 테넌트 것인지 판정하는 방법\n- attempt가 만료됐을 때의 처리(`state_ttl_seconds: 300`, config/entrypoints.yaml:6)",
+  "usage": {
+    "input_tokens": 2,
+    "cache_creation_input_tokens": 4564,
+    "cache_read_input_tokens": 0,
+    "output_tokens": 2827,
+    "output_tokens_details": {
+      "thinking_tokens": 1794
+    },
+    "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+    },
+    "service_tier": "standard",
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 4564,
+      "ephemeral_5m_input_tokens": 0
+    },
+    "inference_geo": "not_available",
+    "iterations": [
+      {
+        "input_tokens": 2,
+        "output_tokens": 2827,
+        "cache_read_input_tokens": 0,
+        "cache_creation_input_tokens": 4564,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 0,
+          "ephemeral_1h_input_tokens": 4564
+        },
+        "type": "message"
+      }
+    ],
+    "speed": "standard"
+  },
+  "modelUsage": {
+    "claude-opus-5[1m]": {
+      "inputTokens": 2,
+      "outputTokens": 2827,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 4564,
+      "webSearchRequests": 0,
+      "costUSD": 0.116325,
+      "contextWindow": 1000000,
+      "maxOutputTokens": 128000,
+      "thinkingTokens": 1794,
+      "canonicalModel": "claude-opus-5",
+      "provider": "firstParty",
+      "costBasis": "list"
+    }
+  },
+  "total_cost_usd": 0.116325,
+  "stop_reason": "end_turn",
+  "input_sha256": "30d09883e70efdafdde44fcf1afc8115bb434246112e8cb8f5f71950cdb721f1"
+}

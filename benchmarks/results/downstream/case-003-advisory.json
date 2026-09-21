@@ -1,0 +1,55 @@
+{
+  "result": "**결론:** Desktop 2.4 ZIP은 **422 `{\"error\": \"invalid_archive\"}`**로 거부됩니다. Web PDF는 형식 검사를 통과하면 **201 `{\"id\": …}`**로 받아집니다. 추가 저장 용량은 추정할 수 없습니다.\n\n**1. Desktop 2.4 ZIP (압축 14 MiB, 해제 시 160 MiB)**\n- 압축 크기는 한도 `zip_bytes: 15728640`(15 MiB) 안이라 통과합니다(config/attachments.yaml:3).\n- 해제 크기가 한도 `zip_expanded_bytes: 104857600`(100 MiB)를 넘습니다(config/attachments.yaml:4). 이 검사는 압축을 풀기 전에 해야 합니다(docs/attachments.md:6).\n- ZIP 규칙 위반은 422 `invalid_archive`입니다(docs/attachments.md:9).\n- 2.4는 문자열 envelope를 받고, HTTP 상태는 그대로 유지합니다(docs/desktop.md:4,6-8). 검증은 web과 같습니다.\n\n**2. Web PDF (19 MiB)**\n- 한도 `pdf_bytes: 20971520`(20 MiB) 안입니다(config/attachments.yaml:2).\n- 확장자와 감지된 형식이 일치하고 editor 권한이 있으면 201을 돌려줍니다(docs/attachments.md:4; docs/access.md:4).\n- 형식이 다르면 415 `{\"error\": {\"code\": \"unsupported\"}}`입니다(docs/attachments.md:14; docs/desktop.md:5).\n- 암호가 걸린 PDF도 저장은 되지만 미리보기는 없습니다(docs/attachments.md:18).\n\n**3. 코드 차이**\n현재 코드는 `MAX_BYTES`가 10 MiB로 고정되어 있어 두 파일 모두 413으로 거부합니다(attachments/upload.py:3,11-12). 그 밖에도 문서와 다른 점이 있습니다.\n- 본문 전체를 먼저 읽고 나서 크기를 봅니다(attachments/upload.py:7). 문서는 스트리밍 중 받은 바이트 수를 세라고 합니다(docs/attachments.md:12).\n- 형식 감지와 ZIP 검사가 없습니다.\n- 오류 envelope가 문자열 형식 하나뿐입니다.\n- 권한 확인이 없습니다.\n\n10 MiB 단일 한도는 이전 기록이고 이미 대체되었습니다(notes/2025-attachments.md:2).\n\n**4. 저장 용량**\n추정할 근거가 없습니다. 파일 크기 분포 측정값이 없고, 개발용 샘플은 실제 운영과 관계없습니다(docs/desktop.md:14-15). 과금 대상은 커밋된 바이트뿐입니다(docs/access.md:11).",
+  "usage": {
+    "input_tokens": 2,
+    "cache_creation_input_tokens": 3469,
+    "cache_read_input_tokens": 1014,
+    "output_tokens": 2162,
+    "output_tokens_details": {
+      "thinking_tokens": 1117
+    },
+    "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+    },
+    "service_tier": "standard",
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 3469,
+      "ephemeral_5m_input_tokens": 0
+    },
+    "inference_geo": "not_available",
+    "iterations": [
+      {
+        "input_tokens": 2,
+        "output_tokens": 2162,
+        "cache_read_input_tokens": 1014,
+        "cache_creation_input_tokens": 3469,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 0,
+          "ephemeral_1h_input_tokens": 3469
+        },
+        "type": "message"
+      }
+    ],
+    "speed": "standard"
+  },
+  "modelUsage": {
+    "claude-opus-5[1m]": {
+      "inputTokens": 2,
+      "outputTokens": 2162,
+      "cacheReadInputTokens": 1014,
+      "cacheCreationInputTokens": 3469,
+      "webSearchRequests": 0,
+      "costUSD": 0.089257,
+      "contextWindow": 1000000,
+      "maxOutputTokens": 128000,
+      "thinkingTokens": 1117,
+      "canonicalModel": "claude-opus-5",
+      "provider": "firstParty",
+      "costBasis": "list"
+    }
+  },
+  "total_cost_usd": 0.089257,
+  "stop_reason": "end_turn",
+  "input_sha256": "babadff34b223f81c1f23c1a0f9c5ca87744b9cbc68ffb9e6a135e0bc9505b45"
+}

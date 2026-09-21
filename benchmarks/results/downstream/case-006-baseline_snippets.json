@@ -1,0 +1,55 @@
+{
+  "result": "**결론: 지금 자료로는 공지를 확정할 수 없습니다.** 일정 자료(`operations/window.yaml`)와 작업 절차(`operations/search.md`)가 제공되지 않았습니다. 초안 본문도 지난 분기 공지를 복사한 것이라 사실 확인이 필요합니다(communications/draft.md:15-18).\n\n**항목별 판단**\n- **시간:** 초안의 \"다음 주 토요일 03:00~04:00\"(draft.md:4,6)은 근거가 없습니다. 4월 공지는 7월 일정에 적용하지 않는다고 적혀 있습니다(history/april-notice.md:4-7). 오늘(9월 21일) 기준 \"다음 주\"가 7월 일정과 같은 작업인지도 알 수 없습니다. 날짜와 시간대는 줄이지 않고 함께 쓰고, 종료 시각에는 \"예정\"을 붙입니다(docs/writing.md:4,8). 시간대는 제목에도 넣습니다(april-notice.md:10).\n- **검색·편집 영향:** 확인할 수 없습니다. \"서비스 전체 중단\"(draft.md:4)은 검증되지 않았습니다. 멈추는 기능과 계속 쓸 수 있는 기능을 모두 적어야 합니다(writing.md:5).\n- **고객 조치:** \"미리 저장, 접속 자제\"(draft.md:5)는 4월 저장소 교체 때문에 했던 요청입니다(april-notice.md:6). 영향이 없는 고객에게는 행동을 요구하지 않습니다(writing.md:17).\n- **복구:** \"완료 즉시 최신 상태\"(draft.md:7)는 기준 위반입니다(writing.md:7). \"검증을 마친 뒤 정상화를 안내하겠습니다\"로 바꿔 씁니다.\n- **공개 수준:** \"데이터베이스 노드 교체\"(draft.md:8)는 삭제합니다. 내부 호스트명, 노드 식별자, 우회 명령은 공개하지 않고(writing.md:6), 사유는 기능 수준으로만 설명합니다(writing.md:16).\n- **문의 경로·실명:** 문의 경로도 실명 공개 기준도 자료에 없어 판단할 수 없습니다(draft.md:20). 이름 대신 자리표시자를 둡니다.\n\n**초안 틀**\n> [제목] 검색 점검 안내 ([YYYY년 M월 D일 HH:MM~HH:MM(예정) Asia/Seoul])\n> 검색 품질 개선을 위해 점검을 진행합니다. 점검 중에는 [영향 기능]을 쓸 수 없고, [가능 기능]은 계속 쓸 수 있습니다. [조치 필요 시만: 해당 고객 조치] 검증을 마친 뒤 정상화를 안내하겠습니다. 문의: [공식 문의 경로]",
+  "usage": {
+    "input_tokens": 2,
+    "cache_creation_input_tokens": 2960,
+    "cache_read_input_tokens": 1014,
+    "output_tokens": 2239,
+    "output_tokens_details": {
+      "thinking_tokens": 1201
+    },
+    "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+    },
+    "service_tier": "standard",
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 2960,
+      "ephemeral_5m_input_tokens": 0
+    },
+    "inference_geo": "not_available",
+    "iterations": [
+      {
+        "input_tokens": 2,
+        "output_tokens": 2239,
+        "cache_read_input_tokens": 1014,
+        "cache_creation_input_tokens": 2960,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 0,
+          "ephemeral_1h_input_tokens": 2960
+        },
+        "type": "message"
+      }
+    ],
+    "speed": "standard"
+  },
+  "modelUsage": {
+    "claude-opus-5[1m]": {
+      "inputTokens": 2,
+      "outputTokens": 2239,
+      "cacheReadInputTokens": 1014,
+      "cacheCreationInputTokens": 2960,
+      "webSearchRequests": 0,
+      "costUSD": 0.086092,
+      "contextWindow": 1000000,
+      "maxOutputTokens": 128000,
+      "thinkingTokens": 1201,
+      "canonicalModel": "claude-opus-5",
+      "provider": "firstParty",
+      "costBasis": "list"
+    }
+  },
+  "total_cost_usd": 0.086092,
+  "stop_reason": "end_turn",
+  "input_sha256": "b33c3cbd4a0dc60daa16e8f48099221768e20a702859fce6cbeeda058ef3437e"
+}

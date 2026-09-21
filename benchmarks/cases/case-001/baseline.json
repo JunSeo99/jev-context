@@ -1,0 +1,53 @@
+{
+  "method": "BM25, k1=1.2, b=0.75, three files/two blocks each; not an agent baseline",
+  "task_sha256": "d2886d482eb3e1ccb4aad1362b1aaed3ca3c50282a574ffbf1fc97efed07c8ef",
+  "paths": [
+    "docs/csv.md",
+    "notes/2025-11-billing.md",
+    "docs/operations.md"
+  ],
+  "selected": [
+    {
+      "path": "docs/csv.md",
+      "start_line": 10,
+      "end_line": 17,
+      "reason": "fixed BM25 top blocks",
+      "score": 11.971914208608153
+    },
+    {
+      "path": "docs/csv.md",
+      "start_line": 1,
+      "end_line": 9,
+      "reason": "fixed BM25 top blocks",
+      "score": 10.953561307373931
+    },
+    {
+      "path": "notes/2025-11-billing.md",
+      "start_line": 1,
+      "end_line": 9,
+      "reason": "fixed BM25 top blocks",
+      "score": 11.123378328175521
+    },
+    {
+      "path": "notes/2025-11-billing.md",
+      "start_line": 10,
+      "end_line": 15,
+      "reason": "fixed BM25 top blocks",
+      "score": 5.581085995312089
+    },
+    {
+      "path": "docs/operations.md",
+      "start_line": 4,
+      "end_line": 10,
+      "reason": "fixed BM25 top blocks",
+      "score": 10.747220011870326
+    },
+    {
+      "path": "docs/operations.md",
+      "start_line": 16,
+      "end_line": 18,
+      "reason": "fixed BM25 top blocks",
+      "score": 10.114513757502477
+    }
+  ]
+}

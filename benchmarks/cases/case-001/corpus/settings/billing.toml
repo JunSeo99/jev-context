@@ -1,0 +1,15 @@
+[exports]
+standard_max_days = 90
+enterprise_max_days = 180
+page_size = 500
+allow_closed = true
+timezone = "UTC"
+
+[invoice_numbers]
+prefix = "IV"
+width = 8
+recycle = false
+
+[mail]
+receipt_sender = "accounts@example.test"
+digest_hour = 8

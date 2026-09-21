@@ -1,0 +1,55 @@
+{
+  "result": "# 체크리스트 요약: 프로덕션 출시와 14일 샌드박스 트라이얼\n\n아래 내용은 제공된 문서만 근거로 합니다. 정확한 승인 소요 기간은 체크리스트에 적을 수 없습니다.\n\n**프로덕션 출시**\n- **자격 증명:** 개인 API key는 사용할 수 없습니다. 파일럿에서만 쓰던 방식이고 외부 온보딩용으로 승인된 적이 없습니다(history/connector-pilot.md:4, 8). launch ticket에는 credential owner와 disable contact를 기록해야 합니다(docs/integrations.md:8).\n- **권한:** 설정된 scope가 허용 범위의 전부입니다. read-only 커넥터에는 write 권한을 요청하면 안 됩니다(docs/integrations.md:5-6).\n- **검증:** 최근 레코드가 아니라 지정된 non-sensitive 테스트 레코드로 확인합니다(docs/integrations.md:7). 테스트 성공 메시지가 나와도 launch 승인을 받은 것은 아닙니다(history/connector-pilot.md:12).\n- **리뷰:** security 승인과 data-owner 승인이 모두 필요합니다(docs/integrations.md:4).\n\n**샌드박스 트라이얼**\n- **데이터:** 생성된 샘플만 쓰는 경우 data-owner 승인만으로 시작할 수 있습니다. security 사전 승인은 면제되지만 identity 요건은 그대로 적용됩니다(docs/integrations.md:11-12).\n- **외부 전송:** 외부 destination으로 데이터를 보낼 수 없습니다(docs/integrations.md:15).\n- **종료:** 접근은 max_duration_days가 되면 끝납니다. 트라이얼이 끝나면 연결을 비활성화하고 credential을 폐기합니다. 연결을 계속 켜 두는 방식은 삭제합니다(docs/integrations.md:13-14, guides/onboarding.md:8).\n- **프로덕션 전환:** 전체 프로덕션 리뷰를 다시 거쳐야 합니다(docs/integrations.md:16).\n\n**확인되지 않은 정보**\n- **승인 소요 기간:** \"2일\"은 계획상 가정이었고 합의된 기간이 아닙니다(history/connector-pilot.md:7). 다른 근거도 없습니다.\n- **config/connectors.yaml:** 파일이 제공되지 않았습니다. 실제 scope 목록도, max_duration_days 값이 14일을 허용하는지도 알 수 없습니다.\n- **현재 identity 표준:** 문서가 없어서 어떤 credential을 써야 하는지(예: service account 여부) 정할 수 없습니다(guides/onboarding.md:11).\n- **프로덕션 종료 절차:** 근거 문서에 나와 있지 않습니다.",
+  "usage": {
+    "input_tokens": 2,
+    "cache_creation_input_tokens": 2619,
+    "cache_read_input_tokens": 1014,
+    "output_tokens": 1646,
+    "output_tokens_details": {
+      "thinking_tokens": 616
+    },
+    "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+    },
+    "service_tier": "standard",
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 2619,
+      "ephemeral_5m_input_tokens": 0
+    },
+    "inference_geo": "not_available",
+    "iterations": [
+      {
+        "input_tokens": 2,
+        "output_tokens": 1646,
+        "cache_read_input_tokens": 1014,
+        "cache_creation_input_tokens": 2619,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 0,
+          "ephemeral_1h_input_tokens": 2619
+        },
+        "type": "message"
+      }
+    ],
+    "speed": "standard"
+  },
+  "modelUsage": {
+    "claude-opus-5[1m]": {
+      "inputTokens": 2,
+      "outputTokens": 1646,
+      "cacheReadInputTokens": 1014,
+      "cacheCreationInputTokens": 2619,
+      "webSearchRequests": 0,
+      "costUSD": 0.067857,
+      "contextWindow": 1000000,
+      "maxOutputTokens": 128000,
+      "thinkingTokens": 616,
+      "canonicalModel": "claude-opus-5",
+      "provider": "firstParty",
+      "costBasis": "list"
+    }
+  },
+  "total_cost_usd": 0.067857,
+  "stop_reason": "end_turn",
+  "input_sha256": "3784bd80fba4c35d8d9dc59e2dc0c6d7ec8c7b4f5611aaf9a4ed72f709426ef1"
+}

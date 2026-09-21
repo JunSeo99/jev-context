@@ -1,0 +1,53 @@
+{
+  "method": "BM25, k1=1.2, b=0.75, three files/two blocks each; not an agent baseline",
+  "task_sha256": "cb775ce72d7356ed0997e3b275dcef9e1b671ac374ea33abb039c2770007c1e0",
+  "paths": [
+    "guides/onboarding.md",
+    "docs/integrations.md",
+    "history/connector-pilot.md"
+  ],
+  "selected": [
+    {
+      "path": "guides/onboarding.md",
+      "start_line": 10,
+      "end_line": 16,
+      "reason": "fixed BM25 top blocks",
+      "score": 14.576560178510817
+    },
+    {
+      "path": "guides/onboarding.md",
+      "start_line": 1,
+      "end_line": 9,
+      "reason": "fixed BM25 top blocks",
+      "score": 7.460655742819282
+    },
+    {
+      "path": "docs/integrations.md",
+      "start_line": 1,
+      "end_line": 9,
+      "reason": "fixed BM25 top blocks",
+      "score": 11.607120334971675
+    },
+    {
+      "path": "docs/integrations.md",
+      "start_line": 10,
+      "end_line": 17,
+      "reason": "fixed BM25 top blocks",
+      "score": 9.73276494931901
+    },
+    {
+      "path": "history/connector-pilot.md",
+      "start_line": 1,
+      "end_line": 9,
+      "reason": "fixed BM25 top blocks",
+      "score": 11.210877203953238
+    },
+    {
+      "path": "history/connector-pilot.md",
+      "start_line": 10,
+      "end_line": 14,
+      "reason": "fixed BM25 top blocks",
+      "score": 4.315718827438478
+    }
+  ]
+}

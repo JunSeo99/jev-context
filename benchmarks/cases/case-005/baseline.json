@@ -1,0 +1,53 @@
+{
+  "method": "BM25, k1=1.2, b=0.75, three files/two blocks each; not an agent baseline",
+  "task_sha256": "9b3058d3be54cda068901c73ccf1cb8b2c9db940fdf2cd8eb59a2037ae9a7561",
+  "paths": [
+    "docs/reporting.md",
+    "docs/requests.md",
+    "notes/2025-report.md"
+  ],
+  "selected": [
+    {
+      "path": "docs/reporting.md",
+      "start_line": 10,
+      "end_line": 15,
+      "reason": "fixed BM25 top blocks",
+      "score": 21.80641939343912
+    },
+    {
+      "path": "docs/reporting.md",
+      "start_line": 1,
+      "end_line": 9,
+      "reason": "fixed BM25 top blocks",
+      "score": 15.401474796456492
+    },
+    {
+      "path": "docs/requests.md",
+      "start_line": 1,
+      "end_line": 9,
+      "reason": "fixed BM25 top blocks",
+      "score": 17.7553590343349
+    },
+    {
+      "path": "docs/requests.md",
+      "start_line": 10,
+      "end_line": 14,
+      "reason": "fixed BM25 top blocks",
+      "score": 8.051776976583364
+    },
+    {
+      "path": "notes/2025-report.md",
+      "start_line": 1,
+      "end_line": 9,
+      "reason": "fixed BM25 top blocks",
+      "score": 13.709541110112248
+    },
+    {
+      "path": "notes/2025-report.md",
+      "start_line": 10,
+      "end_line": 14,
+      "reason": "fixed BM25 top blocks",
+      "score": 9.240182207425326
+    }
+  ]
+}

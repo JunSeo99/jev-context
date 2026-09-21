@@ -1,0 +1,53 @@
+{
+  "method": "BM25, k1=1.2, b=0.75, three files/two blocks each; not an agent baseline",
+  "task_sha256": "6415612665fec6ebbdcc25b2ced9a40a9537e3c247907f8c2180817c2ebe5ef1",
+  "paths": [
+    "docs/refunds.md",
+    "support/playbook.md",
+    "support/case.md"
+  ],
+  "selected": [
+    {
+      "path": "docs/refunds.md",
+      "start_line": 10,
+      "end_line": 15,
+      "reason": "fixed BM25 top blocks",
+      "score": 13.748419685949425
+    },
+    {
+      "path": "docs/refunds.md",
+      "start_line": 1,
+      "end_line": 9,
+      "reason": "fixed BM25 top blocks",
+      "score": 12.624060150676096
+    },
+    {
+      "path": "support/playbook.md",
+      "start_line": 16,
+      "end_line": 19,
+      "reason": "fixed BM25 top blocks",
+      "score": 12.721802109569008
+    },
+    {
+      "path": "support/playbook.md",
+      "start_line": 1,
+      "end_line": 9,
+      "reason": "fixed BM25 top blocks",
+      "score": 11.697461615538542
+    },
+    {
+      "path": "support/case.md",
+      "start_line": 18,
+      "end_line": 21,
+      "reason": "fixed BM25 top blocks",
+      "score": 11.197995349167575
+    },
+    {
+      "path": "support/case.md",
+      "start_line": 1,
+      "end_line": 9,
+      "reason": "fixed BM25 top blocks",
+      "score": 9.956950425521793
+    }
+  ]
+}

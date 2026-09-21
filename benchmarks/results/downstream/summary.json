@@ -1,0 +1,18 @@
+{
+  "aggregate": {
+    "baseline_snippets": {
+      "covered": 13,
+      "concepts": 37
+    },
+    "advisory": {
+      "covered": 36,
+      "concepts": 37
+    }
+  },
+  "cost_usd": 2.6999615,
+  "models": [
+    "claude-fable-5-1",
+    "claude-opus-5[1m]"
+  ],
+  "assessment": "One independent model grading call per task, full source corpus plus frozen rubric, anonymous conditions. Synthetic development decision QA only; not executed code correctness. First rubric-only grading was discarded before report because it could not assess evidence outside selected gold quotes. Unsupported-claim counts are not aggregated because the grader misclassified packet-relative abstentions."
+}

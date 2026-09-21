@@ -1,0 +1,139 @@
+{
+  "id": "case-007",
+  "synthetic": true,
+  "label_status": "authored and frozen before evaluated outputs",
+  "obligations": [
+    {
+      "id": "o1",
+      "description": "Identify duplicate RC-411 as a 7200 minor-unit GBP repeat of RC-410.",
+      "alternatives": [
+        [
+          {
+            "path": "billing/receipts.yaml",
+            "quote": "currency: GBP"
+          },
+          {
+            "path": "billing/receipts.yaml",
+            "quote": "receipt: RC-411\n  amount_minor: 7200"
+          },
+          {
+            "path": "billing/receipts.yaml",
+            "quote": "repeats: RC-410"
+          }
+        ]
+      ],
+      "critical": true
+    },
+    {
+      "id": "o2",
+      "description": "Duplicate exception overrides the used-period default and keeps original paid.",
+      "alternatives": [
+        [
+          {
+            "path": "docs/refunds.md",
+            "quote": "Used subscription periods are normally not refundable."
+          },
+          {
+            "path": "docs/refunds.md",
+            "quote": "The duplicate exception applies even when the valid period was used."
+          },
+          {
+            "path": "docs/refunds.md",
+            "quote": "Refund the receipt marked repeats, leaving the original renewal paid."
+          }
+        ],
+        [
+          {
+            "path": "support/playbook.md",
+            "quote": "Used months normally stay paid, but a duplicate renewal is returned fully."
+          },
+          {
+            "path": "support/playbook.md",
+            "quote": "The original receipt remains the valid payment for the period."
+          }
+        ]
+      ],
+      "critical": true
+    },
+    {
+      "id": "o3",
+      "description": "Access and dates stay unchanged; zero duplicate credits means no adjustment.",
+      "alternatives": [
+        [
+          {
+            "path": "docs/refunds.md",
+            "quote": "A duplicate correction does not cancel seats or change renewal dates."
+          },
+          {
+            "path": "docs/refunds.md",
+            "quote": "A duplicate with zero extra credits requires no credit adjustment."
+          },
+          {
+            "path": "billing/receipts.yaml",
+            "quote": "credits_granted_by_duplicate: 0"
+          }
+        ]
+      ],
+      "critical": true
+    },
+    {
+      "id": "o4",
+      "description": "Finance review precedes submission and bank estimate is 5–10 business days after submission, never guaranteed.",
+      "alternatives": [
+        [
+          {
+            "path": "docs/money.md",
+            "quote": "Finance review is required before a refund is submitted to the processor."
+          },
+          {
+            "path": "docs/money.md",
+            "quote": "After submission, advise an estimated 5–10 business days for bank posting."
+          },
+          {
+            "path": "docs/money.md",
+            "quote": "Never guarantee a bank-arrival date; issuers control posting time."
+          }
+        ]
+      ],
+      "critical": true
+    },
+    {
+      "id": "o5",
+      "description": "Do not claim processing or expose internal transaction identifiers.",
+      "alternatives": [
+        [
+          {
+            "path": "docs/money.md",
+            "quote": "Do not say a refund has been processed without a processor refund id."
+          },
+          {
+            "path": "support/playbook.md",
+            "quote": "CS-184 has no assigned finance reviewer or processor refund id yet."
+          },
+          {
+            "path": "docs/money.md",
+            "quote": "Do not include processor event ids or card fingerprints in customer text."
+          }
+        ]
+      ],
+      "critical": true
+    }
+  ],
+  "unanswerable_questions": [
+    {
+      "question_id": "q4",
+      "reason": "No exact bank posting date or assigned named reviewer exists in the supplied material; an estimated interval is available."
+    }
+  ],
+  "downstream_qa": {
+    "question": "State the refund decision and draft the key promises for this complaint, including amount, credits, access, timing, and escalation uncertainty.",
+    "expected_answer_concepts": [
+      "RC-411 is eligible for a full £72 refund even though June was used; RC-410 remains paid.",
+      "Seats, renewal date, and credits stay unchanged.",
+      "Describe pending finance review, not an executed refund.",
+      "Only estimate 5–10 business days after submission; no guaranteed arrival or named reviewer is available.",
+      "Use receipt and public case ids, excluding internal processor events."
+    ],
+    "assessment_limit": "Evidence-grounded decision quality only; not a claim of code correctness or production safety."
+  }
+}

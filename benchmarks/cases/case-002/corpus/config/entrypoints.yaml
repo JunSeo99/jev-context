@@ -1,0 +1,14 @@
+login:
+  fallback: /workspace
+  legacy_host: portal.example.test
+  legacy_prefix: /teams/
+  legacy_enabled: true
+  state_ttl_seconds: 300
+cookies:
+  same_site: Lax
+  secure: true
+  max_age_seconds: 28800
+theme:
+  wordmark: plain
+  accent: blue
+  show_language_picker: true

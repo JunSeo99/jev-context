@@ -1,0 +1,55 @@
+{
+  "result": "**429 + `Retry-After: 600`, 503, 삭제 시작 후 대기 중인 재시도의 처리 결과**\n\n- **429 + `Retry-After: 600`**: 429는 재시도 대상입니다. 600은 유효한 정수이므로 일반 backoff 대신 이 값을 쓰되, config 상한을 넘을 수 없습니다. 실제 지연은 min(600초, 상한)입니다. 상한 값은 자료에 없습니다. (docs/delivery.md:4, 9-10)\n- **503**: 모든 5xx는 재시도 대상입니다. 재시도 순번에 맞는 configured backoff를 적용합니다. 429가 아니므로 `Retry-After`가 있어도 무시합니다. backoff 값은 자료에 없습니다. (docs/delivery.md:4, 8, 11)\n- **삭제 시작 후 대기 중인 재시도**: 상태는 active → deleting → removed 순서로 바뀝니다. 재시도가 실행되는 시점에 상태를 다시 확인하고, deleting이나 removed이면 재시도를 취소합니다. 삭제를 알리는 마지막 webhook은 보내지 않습니다. 취소는 수신자에게 연락하지 않고 내부에만 기록됩니다. 이미 전송 중인 시도를 어떻게 처리하는지는 자료에 없습니다. (docs/lifecycle.md:4-9)\n- **이벤트 식별**: `X-Event-Id`는 저장된 event id이며 모든 시도에서 같습니다. 서명도 매번 같은 직렬화 payload를 대상으로 합니다. 전달은 at-least-once이므로 중복을 완전히 없앨 수는 없고, 수신자가 이 id로 중복을 제거해야 합니다. 대시보드의 resend 버튼은 같은 이벤트를 새로 전달합니다. 이때 id가 같은지는 명시되어 있지 않습니다. (docs/delivery.md:14-16; docs/receiver-guide.md:19)\n- **최대 시도 횟수**: 첫 전송을 포함해 세며, `max_attempts`에 이르면 멈춥니다. 구체적인 숫자는 자료에 없습니다. (docs/delivery.md:7)\n- **전달 percentile 보장**: 약속할 수 없습니다. production 지연 데이터가 없고, 로컬 테스트로는 percentile을 측정하지 않습니다. 재시도 일정은 정책일 뿐 percentile 보장이 아닙니다. (docs/receiver-guide.md:12-14)",
+  "usage": {
+    "input_tokens": 2,
+    "cache_creation_input_tokens": 2603,
+    "cache_read_input_tokens": 1014,
+    "output_tokens": 1919,
+    "output_tokens_details": {
+      "thinking_tokens": 1005
+    },
+    "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+    },
+    "service_tier": "standard",
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 2603,
+      "ephemeral_5m_input_tokens": 0
+    },
+    "inference_geo": "not_available",
+    "iterations": [
+      {
+        "input_tokens": 2,
+        "output_tokens": 1919,
+        "cache_read_input_tokens": 1014,
+        "cache_creation_input_tokens": 2603,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 0,
+          "ephemeral_1h_input_tokens": 2603
+        },
+        "type": "message"
+      }
+    ],
+    "speed": "standard"
+  },
+  "modelUsage": {
+    "claude-opus-5[1m]": {
+      "inputTokens": 2,
+      "outputTokens": 1919,
+      "cacheReadInputTokens": 1014,
+      "cacheCreationInputTokens": 2603,
+      "webSearchRequests": 0,
+      "costUSD": 0.074522,
+      "contextWindow": 1000000,
+      "maxOutputTokens": 128000,
+      "thinkingTokens": 1005,
+      "canonicalModel": "claude-opus-5",
+      "provider": "firstParty",
+      "costBasis": "list"
+    }
+  },
+  "total_cost_usd": 0.074522,
+  "stop_reason": "end_turn",
+  "input_sha256": "2909403ade92cd412f16511a8315746fc65e33df10d57f16fab3804f5d468c1c"
+}

@@ -1,0 +1,130 @@
+{
+  "id": "case-004",
+  "synthetic": true,
+  "label_status": "authored and frozen before evaluated outputs",
+  "obligations": [
+    {
+      "id": "o1",
+      "description": "Retry only network failures, 429, and 5xx; redirects terminal without following.",
+      "alternatives": [
+        [
+          {
+            "path": "docs/delivery.md",
+            "quote": "Retry network failures, 429, and all 5xx responses."
+          },
+          {
+            "path": "docs/delivery.md",
+            "quote": "Other 4xx responses are terminal; 2xx responses acknowledge delivery."
+          },
+          {
+            "path": "docs/delivery.md",
+            "quote": "Redirect responses are terminal and must not be followed."
+          }
+        ]
+      ],
+      "critical": true
+    },
+    {
+      "id": "o2",
+      "description": "Six total attempts including initial send with configured backoff.",
+      "alternatives": [
+        [
+          {
+            "path": "config/webhooks.toml",
+            "quote": "max_attempts = 6\nbackoff_seconds = [30, 120, 600, 1800, 3600]"
+          },
+          {
+            "path": "docs/delivery.md",
+            "quote": "Attempt counts include the first send; stop at max_attempts."
+          }
+        ]
+      ],
+      "critical": true
+    },
+    {
+      "id": "o3",
+      "description": "429 integer Retry-After overrides backoff up to 900 seconds; not used for 503.",
+      "alternatives": [
+        [
+          {
+            "path": "config/webhooks.toml",
+            "quote": "retry_after_cap_seconds = 900"
+          },
+          {
+            "path": "docs/delivery.md",
+            "quote": "For 429, a valid integer Retry-After replaces backoff, capped by config."
+          },
+          {
+            "path": "docs/delivery.md",
+            "quote": "The header is ignored for statuses other than 429."
+          }
+        ]
+      ],
+      "critical": true
+    },
+    {
+      "id": "o4",
+      "description": "Keep the persisted event id across attempts with at-least-once semantics.",
+      "alternatives": [
+        [
+          {
+            "path": "docs/delivery.md",
+            "quote": "X-Event-Id is the persisted event id and is unchanged on every attempt."
+          },
+          {
+            "path": "docs/delivery.md",
+            "quote": "Delivery remains at-least-once; receivers should deduplicate by that id."
+          }
+        ],
+        [
+          {
+            "path": "docs/receiver-guide.md",
+            "quote": "A stable X-Event-Id identifies one event across all delivery attempts."
+          },
+          {
+            "path": "docs/receiver-guide.md",
+            "quote": "An acknowledgement lost in transit can cause another delivery."
+          }
+        ]
+      ],
+      "critical": true
+    },
+    {
+      "id": "o5",
+      "description": "Recheck lifecycle at execution and cancel deletion-state transfers without final contact.",
+      "alternatives": [
+        [
+          {
+            "path": "docs/lifecycle.md",
+            "quote": "Any outward transfer must recheck account state at execution time."
+          },
+          {
+            "path": "docs/lifecycle.md",
+            "quote": "When state is deleting or removed, cancel queued outward transfers."
+          },
+          {
+            "path": "docs/lifecycle.md",
+            "quote": "Do not send one final webhook to announce account deletion."
+          }
+        ]
+      ],
+      "critical": true
+    }
+  ],
+  "unanswerable_questions": [
+    {
+      "question_id": "q4",
+      "reason": "Production latency measurements and receiver population are absent."
+    }
+  ],
+  "downstream_qa": {
+    "question": "Explain what happens after a 429 with Retry-After: 600, after a 503, and after deletion begins before the queued retry runs; include event identity and the maximum attempt count.",
+    "expected_answer_concepts": [
+      "429 with 600 waits 600 seconds; 503 uses configured retry-index backoff.",
+      "Stop after six total attempts; keep event id stable and acknowledge possible duplicates.",
+      "Check deletion at send time and cancel without a final webhook.",
+      "No delivery-percentile promise follows from retry policy alone."
+    ],
+    "assessment_limit": "Evidence-grounded decision quality only; not a claim of code correctness or production safety."
+  }
+}

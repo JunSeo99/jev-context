@@ -1,0 +1,55 @@
+{
+  "result": "**결론:** 관리자와 일반 구성원의 캐시는 서로 공유하면 안 됩니다. 역할이 바뀌면 `role_epoch`를 올려서 이전 키를 더 이상 쓰지 않게 해야 합니다.\n\n**1. 처음 조회할 때**\n- 캐시 키는 `team_id, month, viewer_id, role_epoch, key_version`로 만듭니다(docs/reporting.md:4-6).\n- 관리자는 팀 전체를 보고, 구성원은 본인 행만 봅니다. `viewer_id`가 다르므로 같은 월간 보고서라도 캐시 항목이 따로 생깁니다.\n- 캐시를 읽기 전에 권한 검사를 먼저 합니다. 탈퇴했거나 비활성화된 사용자는 캐시 값이 있어도 거부합니다(docs/requests.md:4-5).\n\n**2. 역할이 바뀐 뒤**\n- `role_epoch`를 올려 이전 권한으로 만든 값을 다시 쓰지 않습니다(docs/reporting.md:12).\n- 관리자 역할을 잃은 사용자는 다음 요청부터 구성원 결과를 받습니다(docs/reporting.md:13).\n- 이전 키로 남은 항목은 `ttl_seconds`가 지나면 만료됩니다(docs/reporting.md:7). 다만 별도로 지워야 하는지는 문서에 없고, 이 부분은 제 추론입니다.\n\n**3. 예외**\n- 실적 행이 바뀌면 해당 팀과 월의 캐시를 모두 무효화합니다(docs/reporting.md:11).\n- 사용자를 가장한 지원 세션은 공유 캐시를 읽거나 쓰지 않고, 응답에 `Cache-Control: no-store`를 설정합니다(docs/requests.md:6-7).\n- 캐시에 장애가 나면 원본 조회로 우회할 수 있습니다. 권한 저장소 장애는 접근 허용으로 우회할 수 없습니다(docs/requests.md:11-12).\n\n**문서에 없는 정보**\n- `ttl_seconds`의 실제 값\n- `role_epoch`가 사용자 단위인지 팀 단위인지, 그리고 올리는 주체와 시점\n- `key_version`의 현재 값\n\n**적중률:** 근거가 없어서 예상할 수 없습니다. 90%라는 수치는 이미 대체된 시제품 문서에 있던 목표였고, 실제로 잰 값이 아닙니다(notes/2025-report.md:2, 8). 게다가 사용자마다 키가 따로 있어서 그 수치를 그대로 적용하기 어렵습니다.",
+  "usage": {
+    "input_tokens": 2,
+    "cache_creation_input_tokens": 2983,
+    "cache_read_input_tokens": 1014,
+    "output_tokens": 1625,
+    "output_tokens_details": {
+      "thinking_tokens": 666
+    },
+    "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+    },
+    "service_tier": "standard",
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 2983,
+      "ephemeral_5m_input_tokens": 0
+    },
+    "inference_geo": "not_available",
+    "iterations": [
+      {
+        "input_tokens": 2,
+        "output_tokens": 1625,
+        "cache_read_input_tokens": 1014,
+        "cache_creation_input_tokens": 2983,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 0,
+          "ephemeral_1h_input_tokens": 2983
+        },
+        "type": "message"
+      }
+    ],
+    "speed": "standard"
+  },
+  "modelUsage": {
+    "claude-opus-5[1m]": {
+      "inputTokens": 2,
+      "outputTokens": 1625,
+      "cacheReadInputTokens": 1014,
+      "cacheCreationInputTokens": 2983,
+      "webSearchRequests": 0,
+      "costUSD": 0.07097200000000001,
+      "contextWindow": 1000000,
+      "maxOutputTokens": 128000,
+      "thinkingTokens": 666,
+      "canonicalModel": "claude-opus-5",
+      "provider": "firstParty",
+      "costBasis": "list"
+    }
+  },
+  "total_cost_usd": 0.07097200000000001,
+  "stop_reason": "end_turn",
+  "input_sha256": "aa2d7700609a0477803d99e545adf69e03d8f00b55a10127c77a506d3c0d450f"
+}

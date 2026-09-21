@@ -1,0 +1,55 @@
+{
+  "result": "**결론:** 관리자와 구성원은 같은 월간 보고서를 봐도 캐시 항목을 공유하면 안 됩니다. 역할이 바뀌면 `role_epoch`를 올려 이전 권한으로 저장한 캐시를 다시 쓰지 않습니다.\n\n**캐시 키와 만료**\n- 키는 `team_id, month, viewer_id, role_epoch, key_version`으로 만듭니다(docs/reporting.md:4-6). 관리자는 팀 전체를, 구성원은 본인 행만 보므로 `viewer_id`가 달라 항목이 나뉩니다(docs/reporting.md:4-5).\n- 현재 코드는 키가 `report:{month}`뿐이고 `ttl=3600`입니다(reports/cache.py:5,14). 이대로면 관리자의 팀 전체 보고서가 구성원이나 다른 팀에 나갈 수 있어 계약 위반입니다.\n- TTL은 300초, `key_version`은 2입니다(config/reports.yaml:2-3). 키를 바꿀 때는 기존 키를 재사용하지 않게 배포합니다(docs/reporting.md:8).\n\n**역할 변경**\n- 역할을 바꾸면 `role_epoch`가 올라가고, 이전 epoch로 저장한 보고서는 이후 요청에 쓰지 않습니다(docs/team-admin.md:4-5; docs/reporting.md:12).\n- 관리자 역할을 잃은 사용자는 다음 요청부터 구성원 결과를 받습니다(docs/reporting.md:13). 이전 항목은 TTL이 지나면 사라집니다.\n\n**예외와 무효화**\n- 권한 검사는 캐시를 읽기 전에 합니다. 비활성화되거나 탈퇴한 사용자는 캐시가 있어도 거부합니다(docs/requests.md:4-5).\n- 가장 중인 지원 세션은 공유 캐시를 읽거나 쓰지 않고 `no-store`를 설정합니다(docs/requests.md:6-7).\n- 캐시 장애 때는 원본 조회로 우회할 수 있습니다. 권한 저장소 장애 때는 접근을 허용하는 쪽으로 우회할 수 없습니다(docs/requests.md:11-12).\n- 실적 행이 바뀌거나 월마감 이벤트가 오면 해당 팀·월의 캐시를 모두 무효화합니다(docs/reporting.md:11; docs/team-admin.md:13).\n\n**적중률**\n- 산정할 수 없습니다. 요청 빈도와 사용자별 조회 분포를 수집하지 않았고 측정 결과도 없습니다(docs/team-admin.md:11-12). 90%는 시제품 때의 목표였고 실측값이 아닙니다(notes/2025-report.md:8).\n\n**자료에 없는 것:** `role_epoch`를 어디에 저장하고 어떻게 읽는지, 역할 변경과 epoch 증가가 원자적으로 처리되는지는 나와 있지 않습니다.",
+  "usage": {
+    "input_tokens": 2,
+    "cache_creation_input_tokens": 3646,
+    "cache_read_input_tokens": 1014,
+    "output_tokens": 1834,
+    "output_tokens_details": {
+      "thinking_tokens": 747
+    },
+    "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+    },
+    "service_tier": "standard",
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 3646,
+      "ephemeral_5m_input_tokens": 0
+    },
+    "inference_geo": "not_available",
+    "iterations": [
+      {
+        "input_tokens": 2,
+        "output_tokens": 1834,
+        "cache_read_input_tokens": 1014,
+        "cache_creation_input_tokens": 3646,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 0,
+          "ephemeral_1h_input_tokens": 3646
+        },
+        "type": "message"
+      }
+    ],
+    "speed": "standard"
+  },
+  "modelUsage": {
+    "claude-opus-5[1m]": {
+      "inputTokens": 2,
+      "outputTokens": 1834,
+      "cacheReadInputTokens": 1014,
+      "cacheCreationInputTokens": 3646,
+      "webSearchRequests": 0,
+      "costUSD": 0.082827,
+      "contextWindow": 1000000,
+      "maxOutputTokens": 128000,
+      "thinkingTokens": 747,
+      "canonicalModel": "claude-opus-5",
+      "provider": "firstParty",
+      "costBasis": "list"
+    }
+  },
+  "total_cost_usd": 0.082827,
+  "stop_reason": "end_turn",
+  "input_sha256": "32e0da6fed4260abe4c6f86e855ef629a251a76f8ae8abf5e37068e85b679773"
+}

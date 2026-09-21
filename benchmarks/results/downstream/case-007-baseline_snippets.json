@@ -1,0 +1,55 @@
+{
+  "result": "**결정:** 조건부 승인입니다. 같은 6월 갱신에 대한 결제가 정산(settled)된 중복 결제라면 전액 환불합니다. 6월 기간을 이미 사용했더라도 이 예외는 적용됩니다. 환불 대상은 `repeats`로 표시된 영수증뿐이며, 원래 갱신 결제는 그대로 유지됩니다(docs/refunds.md:4-8, support/playbook.md:4-6).\n\n**확인되지 않은 정보:** 원장(ledger)과 영수증 자료가 제공되지 않았습니다. 따라서 `repeats` 영수증이 어느 것인지, 정산 여부, `amount_minor` 금액과 통화, 중복 결제로 지급된 크레딧은 아직 확인할 수 없습니다. 금액은 minor unit 기준으로 읽어야 합니다(playbook.md:9). docs/money.md도 제공되지 않아 승인이나 처리 시점에 관한 문구를 확정할 수 없습니다(refunds.md:14).\n\n**초안 핵심 문구(en-GB, CS-184, 발송 금지: case.md:18-21):**\n- \"Under CS-184, we'll refund the duplicate June charge in full. Your original renewal remains the valid payment.\"\n- \"Your seats will keep working and your renewal date won't change. We'll remove only credits added by the duplicate charge; if it added none, nothing changes.\" (refunds.md:11-13, playbook.md:8에 따라 같은 문단에 작성)\n- \"We can't guarantee a date for the refund to reach your bank.\" (playbook.md:18)\n- \"Your case is being handled by our billing team.\" 담당자 이름은 적지 않습니다.\n\n**약속하면 안 되는 것:** 은행 입금일, 처리 기간, 승인 확정, 관리자 이름, 환불 ID입니다. 재무 검토자와 processor refund id가 아직 배정되지 않았고, 지원 운영시간 정보도 없습니다(playbook.md:17-19).",
+  "usage": {
+    "input_tokens": 2,
+    "cache_creation_input_tokens": 2556,
+    "cache_read_input_tokens": 1014,
+    "output_tokens": 1359,
+    "output_tokens_details": {
+      "thinking_tokens": 647
+    },
+    "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+    },
+    "service_tier": "standard",
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 2556,
+      "ephemeral_5m_input_tokens": 0
+    },
+    "inference_geo": "not_available",
+    "iterations": [
+      {
+        "input_tokens": 2,
+        "output_tokens": 1359,
+        "cache_read_input_tokens": 1014,
+        "cache_creation_input_tokens": 2556,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 0,
+          "ephemeral_1h_input_tokens": 2556
+        },
+        "type": "message"
+      }
+    ],
+    "speed": "standard"
+  },
+  "modelUsage": {
+    "claude-opus-5[1m]": {
+      "inputTokens": 2,
+      "outputTokens": 1359,
+      "cacheReadInputTokens": 1014,
+      "cacheCreationInputTokens": 2556,
+      "webSearchRequests": 0,
+      "costUSD": 0.060052,
+      "contextWindow": 1000000,
+      "maxOutputTokens": 128000,
+      "thinkingTokens": 647,
+      "canonicalModel": "claude-opus-5",
+      "provider": "firstParty",
+      "costBasis": "list"
+    }
+  },
+  "total_cost_usd": 0.060052,
+  "stop_reason": "end_turn",
+  "input_sha256": "a23259bb5ecd98f0699d607ccb1f2a75f87286e76ab26b985d7d5a109d0d0723"
+}

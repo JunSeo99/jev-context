@@ -1,0 +1,53 @@
+{
+  "method": "BM25, k1=1.2, b=0.75, three files/two blocks each; not an agent baseline",
+  "task_sha256": "1afe167f9cab91e053af7c412ee367e83f01fb912fcdad60c87d1276fb2a2841",
+  "paths": [
+    "docs/desktop.md",
+    "docs/attachments.md",
+    "notes/2025-attachments.md"
+  ],
+  "selected": [
+    {
+      "path": "docs/desktop.md",
+      "start_line": 1,
+      "end_line": 10,
+      "reason": "fixed BM25 top blocks",
+      "score": 16.27484966140685
+    },
+    {
+      "path": "docs/desktop.md",
+      "start_line": 11,
+      "end_line": 16,
+      "reason": "fixed BM25 top blocks",
+      "score": 13.091645115169076
+    },
+    {
+      "path": "docs/attachments.md",
+      "start_line": 1,
+      "end_line": 10,
+      "reason": "fixed BM25 top blocks",
+      "score": 14.504329526715056
+    },
+    {
+      "path": "docs/attachments.md",
+      "start_line": 17,
+      "end_line": 20,
+      "reason": "fixed BM25 top blocks",
+      "score": 8.59283439225862
+    },
+    {
+      "path": "notes/2025-attachments.md",
+      "start_line": 1,
+      "end_line": 9,
+      "reason": "fixed BM25 top blocks",
+      "score": 11.325143399255934
+    },
+    {
+      "path": "notes/2025-attachments.md",
+      "start_line": 10,
+      "end_line": 14,
+      "reason": "fixed BM25 top blocks",
+      "score": 6.430260063045334
+    }
+  ]
+}

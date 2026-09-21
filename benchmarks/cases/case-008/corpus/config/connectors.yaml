@@ -1,0 +1,14 @@
+production:
+  scopes: [records.read]
+  sync_interval_minutes: 30
+  approvals: [security, data_owner]
+sandbox:
+  scopes: [sample.read]
+  max_duration_days: 14
+  dataset: generated-samples
+  external_delivery: false
+identity:
+  credential_type: service_account
+  rotation_days: 90
+display:
+  connection_label: Partner connection

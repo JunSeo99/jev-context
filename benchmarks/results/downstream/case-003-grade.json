@@ -1,0 +1,86 @@
+{
+  "result": "{\"grades\":[{\"answer_id\":\"A\",\"concepts_covered\":[0,1,3],\"unsupported_claims\":[],\"explanation\":\"개념 0 충족: ZIP의 해제 크기 160 MiB가 `zip_expanded_bytes`(100 MiB)를 넘으므로 거부된다고 판정합니다. 또한 422와 2.4 문자열 envelope `{\\\"error\\\": \\\"invalid_archive\\\"}`를 제시하고, HTTP status는 그대로 유지된다고 정확히 설명합니다. 개념 1 충족: 19 MiB PDF가 `pdf_bytes`(20 MiB) 한도 안에 있다고 봅니다. 확장자와 감지된 형식이 일치해야 하고 editor 권한이 필요하다는 조건도 달았습니다. 개념 2 미충족: 스트리밍으로 받은 바이트를 세야 한다는 점은 언급했습니다. 그러나 커밋 전까지 임시 blob을 private으로 두고 실패 시 삭제 큐에 넣는 트랜잭션 소유권 요건은 빠졌습니다. 개념 3 충족: 파일 크기 분포 측정값이 없어 저장 용량 증가를 추정할 수 없다고 밝힙니다. 인용한 줄 번호와 현재 코드와의 차이 설명(10 MiB 고정으로 두 파일 모두 413 반환)은 코퍼스와 일치합니다. 성공 시 201 `{\\\"id\\\": …}`는 코드에 근거가 있으므로 근거 없는 주장으로 보지 않았습니다.\"},{\"answer_id\":\"B\",\"concepts_covered\":[3],\"unsupported_claims\":[\"config의 크기 한도 값이 제공되지 않았다는 주장 — 실제로는 config/attachments.yaml에 pdf_bytes 20971520, zip_bytes 15728640, zip_expanded_bytes 104857600, zip_entries 500이 있음\",\"제공된 증거만으로는 두 요청의 수락 여부를 확정할 수 없다는 결론 — config 값으로 ZIP 거부와 PDF 크기 통과를 판정할 수 있음\",\"PDF 거부 시의 status와 코드가 증거에 없다는 주장 — docs/attachments.md에 413 too_large와 415 unsupported가 명시되어 있음\",\"docs/attachments.md:11-16과 access.md가 없는 정보라는 주장 — 두 내용 모두 코퍼스에 있음\"],\"explanation\":\"개념 0 미충족: ZIP 규칙을 어기면 422 `invalid_archive`이고 2.4 envelope는 문자열 형식이라는 일반 규칙은 설명합니다. 그러나 config 값이 없다고 보고 160 MiB ZIP을 해제 크기 초과로 거부한다는 판정을 내리지 않았습니다. 개념 1 미충족: 19 MiB PDF가 크기 한도를 충족하는지 판정할 수 없다고 했습니다. 개념 2 미충족: 스트리밍 크기 검증과 private 트랜잭션 blob 소유권을 다루지 않았습니다. 개념 3 충족: 측정된 크기 분포가 없어 저장소 증가를 추정할 수 없다고 정확히 밝힙니다. 핵심 문제는 코퍼스에 있는 config 값, 413/415 규칙, access.md를 '없는 정보'로 단정한 점이며, 그 결과 결론 전체가 잘못되었습니다.\"}]}",
+  "structured_output": {
+    "grades": [
+      {
+        "answer_id": "A",
+        "concepts_covered": [
+          0,
+          1,
+          3
+        ],
+        "unsupported_claims": [],
+        "explanation": "개념 0 충족: ZIP의 해제 크기 160 MiB가 `zip_expanded_bytes`(100 MiB)를 넘으므로 거부된다고 판정합니다. 또한 422와 2.4 문자열 envelope `{\"error\": \"invalid_archive\"}`를 제시하고, HTTP status는 그대로 유지된다고 정확히 설명합니다. 개념 1 충족: 19 MiB PDF가 `pdf_bytes`(20 MiB) 한도 안에 있다고 봅니다. 확장자와 감지된 형식이 일치해야 하고 editor 권한이 필요하다는 조건도 달았습니다. 개념 2 미충족: 스트리밍으로 받은 바이트를 세야 한다는 점은 언급했습니다. 그러나 커밋 전까지 임시 blob을 private으로 두고 실패 시 삭제 큐에 넣는 트랜잭션 소유권 요건은 빠졌습니다. 개념 3 충족: 파일 크기 분포 측정값이 없어 저장 용량 증가를 추정할 수 없다고 밝힙니다. 인용한 줄 번호와 현재 코드와의 차이 설명(10 MiB 고정으로 두 파일 모두 413 반환)은 코퍼스와 일치합니다. 성공 시 201 `{\"id\": …}`는 코드에 근거가 있으므로 근거 없는 주장으로 보지 않았습니다."
+      },
+      {
+        "answer_id": "B",
+        "concepts_covered": [
+          3
+        ],
+        "unsupported_claims": [
+          "config의 크기 한도 값이 제공되지 않았다는 주장 — 실제로는 config/attachments.yaml에 pdf_bytes 20971520, zip_bytes 15728640, zip_expanded_bytes 104857600, zip_entries 500이 있음",
+          "제공된 증거만으로는 두 요청의 수락 여부를 확정할 수 없다는 결론 — config 값으로 ZIP 거부와 PDF 크기 통과를 판정할 수 있음",
+          "PDF 거부 시의 status와 코드가 증거에 없다는 주장 — docs/attachments.md에 413 too_large와 415 unsupported가 명시되어 있음",
+          "docs/attachments.md:11-16과 access.md가 없는 정보라는 주장 — 두 내용 모두 코퍼스에 있음"
+        ],
+        "explanation": "개념 0 미충족: ZIP 규칙을 어기면 422 `invalid_archive`이고 2.4 envelope는 문자열 형식이라는 일반 규칙은 설명합니다. 그러나 config 값이 없다고 보고 160 MiB ZIP을 해제 크기 초과로 거부한다는 판정을 내리지 않았습니다. 개념 1 미충족: 19 MiB PDF가 크기 한도를 충족하는지 판정할 수 없다고 했습니다. 개념 2 미충족: 스트리밍 크기 검증과 private 트랜잭션 blob 소유권을 다루지 않았습니다. 개념 3 충족: 측정된 크기 분포가 없어 저장소 증가를 추정할 수 없다고 정확히 밝힙니다. 핵심 문제는 코퍼스에 있는 config 값, 413/415 규칙, access.md를 '없는 정보'로 단정한 점이며, 그 결과 결론 전체가 잘못되었습니다."
+      }
+    ]
+  },
+  "usage": {
+    "input_tokens": 2,
+    "cache_creation_input_tokens": 7190,
+    "cache_read_input_tokens": 741,
+    "output_tokens": 3730,
+    "output_tokens_details": {
+      "thinking_tokens": 2445
+    },
+    "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+    },
+    "service_tier": "standard",
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 7190,
+      "ephemeral_5m_input_tokens": 0
+    },
+    "inference_geo": "not_available",
+    "iterations": [
+      {
+        "input_tokens": 2,
+        "output_tokens": 3730,
+        "cache_read_input_tokens": 741,
+        "cache_creation_input_tokens": 7190,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 0,
+          "ephemeral_1h_input_tokens": 7190
+        },
+        "type": "message"
+      }
+    ],
+    "speed": "standard"
+  },
+  "modelUsage": {
+    "claude-opus-5[1m]": {
+      "inputTokens": 2,
+      "outputTokens": 3730,
+      "cacheReadInputTokens": 741,
+      "cacheCreationInputTokens": 7190,
+      "webSearchRequests": 0,
+      "costUSD": 0.1655305,
+      "contextWindow": 1000000,
+      "maxOutputTokens": 128000,
+      "thinkingTokens": 2445,
+      "canonicalModel": "claude-opus-5",
+      "provider": "firstParty",
+      "costBasis": "list"
+    }
+  },
+  "total_cost_usd": 0.1655305,
+  "stop_reason": "tool_use",
+  "arm_mapping": {
+    "A": "advisory",
+    "B": "baseline_snippets"
+  },
+  "concept_count": 4
+}

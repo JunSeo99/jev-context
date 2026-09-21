@@ -1,0 +1,55 @@
+{
+  "result": "**결론:** 정확한 승인 소요 기간은 체크리스트에 적을 수 없습니다. 아래는 제공된 자료로 확인된 단계입니다.\n\n**두 경로 공통 조건**\n- 자격 증명: workspace 소유 service account를 사용하고 secret store에 보관합니다. 개인 API key는 금지되며, 티켓이나 스크린숏에 자격 증명을 남기면 안 됩니다. 교체 주기는 90일입니다(docs/identity.md:4-8, config/connectors.yaml:10-12, docs/integrations.md:12,19).\n- 설정 담당자에게는 workspace administrator 역할이 필요합니다(docs/identity.md:6).\n- 티켓에는 scope 이름, dataset 유형, 예정 종료일을 첨부합니다. 검토자가 요청 수정을 요구할 수 있습니다(operations/review.md:7-8).\n\n**Production**\n1. security와 data_owner 승인을 모두 받습니다(docs/integrations.md:4, config/connectors.yaml:4).\n2. scope는 `records.read`만 요청합니다. write는 금지입니다(config/connectors.yaml:2, docs/integrations.md:5-6).\n3. 지정된 비민감 테스트 레코드로 연결을 확인합니다(docs/integrations.md:7).\n4. 출시 티켓에 자격 증명 소유자와 비활성화 담당자를 기록합니다(docs/integrations.md:8).\n\n**14일 sandbox**\n1. generated-samples만 쓰는 경우 data_owner 승인만으로 시작할 수 있습니다. 면제되는 것은 security 사전 승인뿐이고, identity 요건은 그대로 적용됩니다(docs/integrations.md:11-12).\n2. scope는 `sample.read`, 외부 전송은 금지입니다(config/connectors.yaml:6-9, docs/integrations.md:15).\n3. 14일이 지나면 연결을 비활성화하고 자격 증명을 폐기합니다. 다시 켜려면 소유자 확인이 필요합니다(docs/integrations.md:13-14, docs/identity.md:12-13).\n4. production으로 전환하려면 production 전체 검토를 받아야 합니다(docs/integrations.md:16).\n\n**확인되지 않은 정보**\n- 승인 소요 기간(SLA)은 승인된 적이 없습니다. \"2일\"은 파일럿 때의 계획 가정일 뿐입니다(operations/review.md:11-14, history/connector-pilot.md:6-7).\n- 자료에 없는 내용: 14일을 언제부터 세는지, 만료가 자동으로 적용되는지, 교체 도움말 페이지 URL.\n- guides/onboarding.md:4-8의 기존 체크리스트 항목은 모두 폐기해야 합니다.",
+  "usage": {
+    "input_tokens": 2,
+    "cache_creation_input_tokens": 3444,
+    "cache_read_input_tokens": 1014,
+    "output_tokens": 2250,
+    "output_tokens_details": {
+      "thinking_tokens": 1251
+    },
+    "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+    },
+    "service_tier": "standard",
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 3444,
+      "ephemeral_5m_input_tokens": 0
+    },
+    "inference_geo": "not_available",
+    "iterations": [
+      {
+        "input_tokens": 2,
+        "output_tokens": 2250,
+        "cache_read_input_tokens": 1014,
+        "cache_creation_input_tokens": 3444,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 0,
+          "ephemeral_1h_input_tokens": 3444
+        },
+        "type": "message"
+      }
+    ],
+    "speed": "standard"
+  },
+  "modelUsage": {
+    "claude-opus-5[1m]": {
+      "inputTokens": 2,
+      "outputTokens": 2250,
+      "cacheReadInputTokens": 1014,
+      "cacheCreationInputTokens": 3444,
+      "webSearchRequests": 0,
+      "costUSD": 0.091207,
+      "contextWindow": 1000000,
+      "maxOutputTokens": 128000,
+      "thinkingTokens": 1251,
+      "canonicalModel": "claude-opus-5",
+      "provider": "firstParty",
+      "costBasis": "list"
+    }
+  },
+  "total_cost_usd": 0.091207,
+  "stop_reason": "end_turn",
+  "input_sha256": "2a9b19641c38346f4bb9bfdb8d3440959ba020c297aa7b9c0ba1d190e48b8dc2"
+}

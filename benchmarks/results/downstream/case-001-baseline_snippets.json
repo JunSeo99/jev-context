@@ -1,0 +1,92 @@
+{
+  "result": "## 1. 범위 (120일)\n- 길이 = to − from, UTC 일 기준 (docs/csv.md:6).\n- standard 티어 한도는 `settings/billing.toml`에서 읽음 (docs/csv.md:7) — **해당 파일이 증거에 없음**. 따라서 120일 수락 여부는 판정 불가.\n- 한도 이내면 수락, 초과면 **거부**하며 조용한 단축 금지 (docs/csv.md:8).\n\n## 2. 행\n- 계정 A에 바인딩된 인보이스만 (docs/csv.md:5).\n- closed는 `allow_closed`가 true일 때만 포함 (docs/csv.md:11) — 이 계정의 값은 증거에 없음. 요청 플래그 `include_closed`와 설정/권한 `allow_closed`는 별개.\n- voided는 `include_closed` 값과 무관하게 항상 제외 (docs/csv.md:12).\n\n## 3. 열\n- 고정 순서: number, issued_on, amount_minor, currency (docs/csv.md:14).\n- 금액은 정수 minor unit, 통화는 3자리 코드 (docs/csv.md:13).\n- 고객 연락처 열 제외 (docs/csv.md:15); buyer_email·전화·주소 제외 (docs/operations.md:5). handling.md 본문은 미확인 (docs/csv.md:16).\n\n## 4. 검사\n- `account_admin` 역할 필수 + 모든 페이지 계정 바인딩 (docs/csv.md:4-5).\n- 내보내기 화면과 API는 동일 권한 (docs/operations.md:7).\n- notes/2025-11-billing.md는 폐기됨(2,15행): 30일 고정·전체 멤버 허용·연락처 포함은 무효.\n\n## 5. 런타임\n약속 불가. 이번 릴리스에 전체 규모 타이밍 측정 기록 없음 (docs/operations.md:9), staging 데이터셋은 가공 레코드뿐 (docs/operations.md:8).\n\n## 6. 누락\n티어 한도값, A의 `allow_closed`, handling.md 내용.",
+  "usage": {
+    "input_tokens": 4,
+    "cache_creation_input_tokens": 4656,
+    "cache_read_input_tokens": 3622,
+    "output_tokens": 1383,
+    "output_tokens_details": {
+      "thinking_tokens": 604
+    },
+    "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+    },
+    "service_tier": "standard",
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 3622,
+      "ephemeral_5m_input_tokens": 0
+    },
+    "inference_geo": "not_available",
+    "iterations": [
+      {
+        "input_tokens": 2,
+        "output_tokens": 152,
+        "cache_read_input_tokens": 0,
+        "cache_creation_input_tokens": 3622,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 0,
+          "ephemeral_1h_input_tokens": 3622
+        },
+        "type": "message"
+      },
+      {
+        "input_tokens": 5036,
+        "output_tokens": 2088,
+        "cache_read_input_tokens": 0,
+        "cache_creation_input_tokens": 0,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 0,
+          "ephemeral_1h_input_tokens": 0
+        },
+        "type": "advisor_message",
+        "model": "claude-fable-5-1"
+      },
+      {
+        "input_tokens": 2,
+        "output_tokens": 1231,
+        "cache_read_input_tokens": 3622,
+        "cache_creation_input_tokens": 1034,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 1034,
+          "ephemeral_1h_input_tokens": 0
+        },
+        "type": "message"
+      }
+    ],
+    "speed": "standard"
+  },
+  "modelUsage": {
+    "claude-opus-5[1m]": {
+      "inputTokens": 4,
+      "outputTokens": 1383,
+      "cacheReadInputTokens": 3622,
+      "cacheCreationInputTokens": 4656,
+      "webSearchRequests": 0,
+      "costUSD": 0.07908849999999999,
+      "contextWindow": 1000000,
+      "maxOutputTokens": 128000,
+      "thinkingTokens": 604,
+      "canonicalModel": "claude-opus-5",
+      "provider": "firstParty",
+      "costBasis": "list"
+    },
+    "claude-fable-5-1": {
+      "inputTokens": 5036,
+      "outputTokens": 2088,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 0,
+      "costUSD": 0.15476,
+      "contextWindow": 1000000,
+      "maxOutputTokens": 64000,
+      "thinkingTokens": 0,
+      "canonicalModel": "claude-fable-5-1",
+      "provider": "firstParty",
+      "costBasis": "list"
+    }
+  },
+  "total_cost_usd": 0.23384850000000001,
+  "stop_reason": "end_turn",
+  "input_sha256": "9e4706160e6698acd5b6e86d7dd7e52098bf42fe1f594118a691fe08195746ef"
+}

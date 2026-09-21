@@ -1,0 +1,55 @@
+{
+  "result": "**결론:** 아래 내용으로 공지할 수 있습니다. 담당자 실명은 넣을 수 없습니다. 다만 확인된 일정은 2026-07-18이고 오늘은 2026-09-21입니다. 이미 지난 날짜라 \"다음 주\"와 맞지 않으며, 새 일정 자료는 없습니다. 게시 전에 일정 재확인이 필요합니다.\n\n**공지 초안**\n제목: [예정] 2026년 7월 18일(토) 02:00~02:30 (Asia/Seoul) 검색 기능 점검\n- **일시:** 2026년 7월 18일 02:00~02:30 Asia/Seoul. 종료 시각은 예정입니다.\n- **영향:** ap-northeast 지역의 전체 텍스트 검색만 잠시 멈춥니다. 문서 열기, 편집, 저장, 파일 다운로드는 계속 쓸 수 있습니다.\n- **고객 조치:** 없습니다. 평소처럼 작업하시면 되고 따로 백업할 필요도 없습니다.\n- **복구:** 점검 중 만든 문서는 검색이 다시 열린 뒤 순서대로 반영되며, 최대 20분이 걸릴 수 있습니다. 상태 페이지에 15분마다 진행 상황을 올리고, 검증이 끝난 뒤 최종 안내를 드립니다.\n- **문의:** https://status.example.test, support@example.test\n\n**공개 범위**\n- 노드명(검색-3), 인덱스명(segment-v7), 회전조 이름은 공개하지 않습니다.\n- 기존 초안의 \"전체 중단\", \"미리 저장\", \"03:00~04:00\", \"즉시 최신\", \"데이터베이스 노드 교체\"는 삭제합니다. 4월 공지를 복사한 문장입니다.\n- 근거: operations/search.md:4-8, 12, 17; docs/writing.md:4-8; communications/draft.md:4-8, 16; history/april-notice.md:4-7\n\n**실명:** 넣을 수 없습니다. 이 공지용으로 승인된 경우에만 쓸 수 있는데, 배정된 것은 회전조뿐이고 공개 승인된 실명은 없습니다(docs/writing.md:13, support/briefing.md:13).\n\n**일시·문의 근거:** operations/window.yaml:2-11, support/briefing.md:4-7, 11",
+  "usage": {
+    "input_tokens": 2,
+    "cache_creation_input_tokens": 4167,
+    "cache_read_input_tokens": 1014,
+    "output_tokens": 1832,
+    "output_tokens_details": {
+      "thinking_tokens": 983
+    },
+    "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+    },
+    "service_tier": "standard",
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 4167,
+      "ephemeral_5m_input_tokens": 0
+    },
+    "inference_geo": "not_available",
+    "iterations": [
+      {
+        "input_tokens": 2,
+        "output_tokens": 1832,
+        "cache_read_input_tokens": 1014,
+        "cache_creation_input_tokens": 4167,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 0,
+          "ephemeral_1h_input_tokens": 4167
+        },
+        "type": "message"
+      }
+    ],
+    "speed": "standard"
+  },
+  "modelUsage": {
+    "claude-opus-5[1m]": {
+      "inputTokens": 2,
+      "outputTokens": 1832,
+      "cacheReadInputTokens": 1014,
+      "cacheCreationInputTokens": 4167,
+      "webSearchRequests": 0,
+      "costUSD": 0.08798700000000001,
+      "contextWindow": 1000000,
+      "maxOutputTokens": 128000,
+      "thinkingTokens": 983,
+      "canonicalModel": "claude-opus-5",
+      "provider": "firstParty",
+      "costBasis": "list"
+    }
+  },
+  "total_cost_usd": 0.08798700000000001,
+  "stop_reason": "end_turn",
+  "input_sha256": "41d8c1fdb2fcba6b7c6466a1d68a6664097921912f644c30c80b4cac8e095397"
+}

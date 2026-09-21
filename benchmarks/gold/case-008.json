@@ -1,0 +1,161 @@
+{
+  "id": "case-008",
+  "synthetic": true,
+  "label_status": "authored and frozen before evaluated outputs",
+  "obligations": [
+    {
+      "id": "o1",
+      "description": "Both paths require workspace service account, admin setup, secret storage and 90-day rotation.",
+      "alternatives": [
+        [
+          {
+            "path": "docs/identity.md",
+            "quote": "Shared integrations must use a service account owned by the workspace."
+          },
+          {
+            "path": "docs/identity.md",
+            "quote": "Personal API keys must never be entered into shared connector settings."
+          },
+          {
+            "path": "docs/identity.md",
+            "quote": "The setup operator needs the workspace administrator role."
+          },
+          {
+            "path": "docs/identity.md",
+            "quote": "Store credentials in the secret store, not in tickets or screenshots."
+          },
+          {
+            "path": "config/connectors.yaml",
+            "quote": "rotation_days: 90"
+          }
+        ]
+      ],
+      "critical": true
+    },
+    {
+      "id": "o2",
+      "description": "Production uses records.read and both approvals.",
+      "alternatives": [
+        [
+          {
+            "path": "config/connectors.yaml",
+            "quote": "scopes: [records.read]"
+          },
+          {
+            "path": "docs/integrations.md",
+            "quote": "Production launch requires security and data-owner approval."
+          }
+        ],
+        [
+          {
+            "path": "config/connectors.yaml",
+            "quote": "scopes: [records.read]"
+          },
+          {
+            "path": "operations/review.md",
+            "quote": "Production requires both security and data-owner approval."
+          }
+        ]
+      ],
+      "critical": true
+    },
+    {
+      "id": "o3",
+      "description": "Sandbox exception is generated samples/sample.read and data-owner approval without security preapproval.",
+      "alternatives": [
+        [
+          {
+            "path": "config/connectors.yaml",
+            "quote": "scopes: [sample.read]"
+          },
+          {
+            "path": "docs/integrations.md",
+            "quote": "A sandbox using only generated samples may start with data-owner approval."
+          },
+          {
+            "path": "docs/integrations.md",
+            "quote": "The exception removes security preapproval, not identity requirements."
+          }
+        ],
+        [
+          {
+            "path": "config/connectors.yaml",
+            "quote": "scopes: [sample.read]"
+          },
+          {
+            "path": "operations/review.md",
+            "quote": "Generated-sample sandboxes need only data-owner preapproval."
+          },
+          {
+            "path": "docs/integrations.md",
+            "quote": "The exception removes security preapproval, not identity requirements."
+          }
+        ]
+      ],
+      "critical": true
+    },
+    {
+      "id": "o4",
+      "description": "Sandbox expires at 14 days with disable/revoke, no external delivery, and full review for conversion.",
+      "alternatives": [
+        [
+          {
+            "path": "config/connectors.yaml",
+            "quote": "max_duration_days: 14"
+          },
+          {
+            "path": "docs/integrations.md",
+            "quote": "Sandbox access ends at the configured max_duration_days."
+          },
+          {
+            "path": "docs/integrations.md",
+            "quote": "Disable the connection and revoke its credential when the trial ends."
+          },
+          {
+            "path": "docs/integrations.md",
+            "quote": "Sending sandbox data to external destinations is not permitted."
+          },
+          {
+            "path": "docs/integrations.md",
+            "quote": "Converting a trial to production requires the full production review."
+          }
+        ]
+      ],
+      "critical": true
+    },
+    {
+      "id": "o5",
+      "description": "Record owner and disable contact, and verify with a non-sensitive test record.",
+      "alternatives": [
+        [
+          {
+            "path": "docs/integrations.md",
+            "quote": "Verify a connection with a designated non-sensitive test record."
+          },
+          {
+            "path": "docs/integrations.md",
+            "quote": "Record the credential owner and a disable contact in the launch ticket."
+          }
+        ]
+      ],
+      "critical": false
+    }
+  ],
+  "unanswerable_questions": [
+    {
+      "question_id": "q4",
+      "reason": "No approved turnaround SLA, current queue depth, or review calendar is supplied."
+    }
+  ],
+  "downstream_qa": {
+    "question": "Give the required production and 14-day sandbox checklist steps, including credential source, permissions, reviews, trial expiry, and any unconfirmed timing.",
+    "expected_answer_concepts": [
+      "Use workspace service accounts, admin setup, secret storage, and 90-day rotation for both paths.",
+      "Production gets records.read plus security and data-owner approvals.",
+      "Generated-sample trial gets sample.read and data-owner preapproval only.",
+      "At 14 days disable and revoke; prohibit external delivery; full review is needed to convert.",
+      "Document owners and test connection; no exact turnaround is approved."
+    ],
+    "assessment_limit": "Evidence-grounded decision quality only; not a claim of code correctness or production safety."
+  }
+}

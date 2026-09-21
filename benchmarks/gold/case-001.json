@@ -1,0 +1,131 @@
+{
+  "id": "case-001",
+  "synthetic": true,
+  "label_status": "authored and frozen before evaluated outputs",
+  "obligations": [
+    {
+      "id": "o1",
+      "description": "Existing endpoint hardcodes 30 days and only requires authentication.",
+      "alternatives": [
+        [
+          {
+            "path": "billing/export.py",
+            "quote": "if (finish - start).days > 30:"
+          },
+          {
+            "path": "billing/export.py",
+            "quote": "if not actor.is_authenticated:"
+          }
+        ]
+      ],
+      "critical": false
+    },
+    {
+      "id": "o2",
+      "description": "A standard-tier request for 120 days must be rejected under the 90-day configured limit.",
+      "alternatives": [
+        [
+          {
+            "path": "settings/billing.toml",
+            "quote": "standard_max_days = 90"
+          },
+          {
+            "path": "docs/csv.md",
+            "quote": "A request beyond that limit is rejected, never silently shortened."
+          }
+        ]
+      ],
+      "critical": true
+    },
+    {
+      "id": "o3",
+      "description": "Require account_admin and account-bound pagination.",
+      "alternatives": [
+        [
+          {
+            "path": "docs/csv.md",
+            "quote": "Require the account_admin role and bind every page to that account."
+          }
+        ]
+      ],
+      "critical": true
+    },
+    {
+      "id": "o4",
+      "description": "Closed rows may be included but voided rows may not.",
+      "alternatives": [
+        [
+          {
+            "path": "settings/billing.toml",
+            "quote": "allow_closed = true"
+          },
+          {
+            "path": "docs/csv.md",
+            "quote": "Closed invoices may be included when allow_closed is true."
+          },
+          {
+            "path": "docs/csv.md",
+            "quote": "Voided invoices are excluded regardless of the include_closed flag."
+          }
+        ]
+      ],
+      "critical": true
+    },
+    {
+      "id": "o5",
+      "description": "Remove personal contact columns despite the old implementation.",
+      "alternatives": [
+        [
+          {
+            "path": "docs/handling.md",
+            "quote": "Downloadable finance files must not contain personal contact fields."
+          },
+          {
+            "path": "docs/handling.md",
+            "quote": "This includes buyer_email, phone numbers, and street addresses."
+          }
+        ],
+        [
+          {
+            "path": "docs/operations.md",
+            "quote": "Finance files omit buyer_email, phone numbers, and street addresses."
+          }
+        ]
+      ],
+      "critical": true
+    },
+    {
+      "id": "o6",
+      "description": "Audit metadata without including CSV contents.",
+      "alternatives": [
+        [
+          {
+            "path": "docs/handling.md",
+            "quote": "Record actor, account, requested interval, and exported row count."
+          },
+          {
+            "path": "docs/handling.md",
+            "quote": "Never attach CSV contents to an audit event or error report."
+          }
+        ]
+      ],
+      "critical": true
+    }
+  ],
+  "unanswerable_questions": [
+    {
+      "question_id": "q4",
+      "reason": "No full-size timing results, workload sizes, or performance model are supplied."
+    }
+  ],
+  "downstream_qa": {
+    "question": "For administrator A in the standard tier requesting 120 days and closed invoices, specify the accepted range, permitted rows and columns, checks, and whether a runtime promise is justified.",
+    "expected_answer_concepts": [
+      "Reject 120 days for standard tier; do not clip it to 90.",
+      "For a permitted interval require account_admin and account isolation, allow closed, exclude voided.",
+      "Use four contract columns without buyer_email; metadata-only audit.",
+      "No full-size timing evidence supports a runtime promise."
+    ],
+    "assessment_limit": "Evidence-grounded decision quality only; not a claim of code correctness or production safety."
+  }
+}

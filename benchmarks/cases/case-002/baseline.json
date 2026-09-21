@@ -1,0 +1,53 @@
+{
+  "method": "BM25, k1=1.2, b=0.75, three files/two blocks each; not an agent baseline",
+  "task_sha256": "fd5efb58b9c260b368e19c1566cea96f506bfc4d4addb6cb9f0111e5fdac9039",
+  "paths": [
+    "docs/navigation.md",
+    "docs/support.md",
+    "notes/2024-login.md"
+  ],
+  "selected": [
+    {
+      "path": "docs/navigation.md",
+      "start_line": 18,
+      "end_line": 19,
+      "reason": "fixed BM25 top blocks",
+      "score": 30.173430843508346
+    },
+    {
+      "path": "docs/navigation.md",
+      "start_line": 1,
+      "end_line": 10,
+      "reason": "fixed BM25 top blocks",
+      "score": 12.878587606402258
+    },
+    {
+      "path": "docs/support.md",
+      "start_line": 1,
+      "end_line": 8,
+      "reason": "fixed BM25 top blocks",
+      "score": 21.99240439173586
+    },
+    {
+      "path": "docs/support.md",
+      "start_line": 9,
+      "end_line": 14,
+      "reason": "fixed BM25 top blocks",
+      "score": 18.963572293230143
+    },
+    {
+      "path": "notes/2024-login.md",
+      "start_line": 1,
+      "end_line": 9,
+      "reason": "fixed BM25 top blocks",
+      "score": 17.928534005199978
+    },
+    {
+      "path": "notes/2024-login.md",
+      "start_line": 10,
+      "end_line": 14,
+      "reason": "fixed BM25 top blocks",
+      "score": 11.267847539839595
+    }
+  ]
+}

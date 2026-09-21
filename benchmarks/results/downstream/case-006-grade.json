@@ -1,0 +1,88 @@
+{
+  "result": "{\"grades\":[{\"answer_id\":\"A\",\"concepts_covered\":[3],\"unsupported_claims\":[\"일정 자료(operations/window.yaml)와 작업 절차(operations/search.md)가 제공되지 않았다고 단정함. 실제로는 두 파일 모두 자료에 있음\",\"'지금 자료로는 공지를 확정할 수 없습니다'라고 단정함. 일정·영향·조치·복구·문의 정보는 모두 자료에 있음\",\"검색·편집 영향을 '확인할 수 없습니다'라고 함. operations/search.md와 support/briefing.md에 명시되어 있음\",\"'문의 경로도 실명 공개 기준도 자료에 없어 판단할 수 없습니다'라고 함. docs/writing.md에 상태 페이지, support@example.test, 실명 승인 기준이 모두 있음\"],\"explanation\":\"A는 핵심 자료가 없다고 잘못 판단해 공지 초안에 날짜·시간(2026-07-18 02:00–02:30 Asia/Seoul), ap-northeast 검색만의 영향, 편집·다운로드 가능 여부, 고객 조치 불필요, 최대 20분 반영 지연, 문의 경로를 하나도 넣지 못했습니다. 개념 0, 1, 2, 4는 충족하지 못했습니다. 다만 '검증을 마친 뒤 정상화를 안내하겠습니다'로 바꿔 쓰자고 했고, 내부 호스트명·노드 식별자·'데이터베이스 노드 교체' 문구를 공개하지 않도록 한 점은 맞아 개념 3만 인정합니다.\"},{\"answer_id\":\"B\",\"concepts_covered\":[0,1,2,3,4],\"unsupported_claims\":[],\"explanation\":\"B는 모든 개념을 충족합니다. 일시를 2026년 7월 18일 02:00~02:30 Asia/Seoul(종료는 예정)로 적었고, ap-northeast 지역의 전체 텍스트 검색만 중지된다고 밝혔습니다(개념 0). 열기·편집·저장·다운로드는 가능하고 별도 조치나 백업이 필요 없다고 안내했습니다(개념 1). 최신 문서 반영이 최대 20분 늦어질 수 있다고 적었습니다(개념 2). 검증이 끝난 뒤 최종 안내를 하겠다고 했고, 내부 노드명과 인덱스명은 공개하지 않는다고 했습니다(개념 3). 문의 경로로 상태 페이지와 support@example.test를 제시했고, 배정된 것은 회전조뿐이며 승인된 실명이 없다고 밝혔습니다(개념 4). 7월 18일이 토요일인지, 15분 간격 업데이트가 자료에 있는지도 확인했으며 둘 다 사실입니다. 일정이 이미 지난 날짜라는 점을 짚고 재확인이 필요하다고 한 것도 적절한 단서입니다.\"}]}",
+  "structured_output": {
+    "grades": [
+      {
+        "answer_id": "A",
+        "concepts_covered": [
+          3
+        ],
+        "unsupported_claims": [
+          "일정 자료(operations/window.yaml)와 작업 절차(operations/search.md)가 제공되지 않았다고 단정함. 실제로는 두 파일 모두 자료에 있음",
+          "'지금 자료로는 공지를 확정할 수 없습니다'라고 단정함. 일정·영향·조치·복구·문의 정보는 모두 자료에 있음",
+          "검색·편집 영향을 '확인할 수 없습니다'라고 함. operations/search.md와 support/briefing.md에 명시되어 있음",
+          "'문의 경로도 실명 공개 기준도 자료에 없어 판단할 수 없습니다'라고 함. docs/writing.md에 상태 페이지, support@example.test, 실명 승인 기준이 모두 있음"
+        ],
+        "explanation": "A는 핵심 자료가 없다고 잘못 판단해 공지 초안에 날짜·시간(2026-07-18 02:00–02:30 Asia/Seoul), ap-northeast 검색만의 영향, 편집·다운로드 가능 여부, 고객 조치 불필요, 최대 20분 반영 지연, 문의 경로를 하나도 넣지 못했습니다. 개념 0, 1, 2, 4는 충족하지 못했습니다. 다만 '검증을 마친 뒤 정상화를 안내하겠습니다'로 바꿔 쓰자고 했고, 내부 호스트명·노드 식별자·'데이터베이스 노드 교체' 문구를 공개하지 않도록 한 점은 맞아 개념 3만 인정합니다."
+      },
+      {
+        "answer_id": "B",
+        "concepts_covered": [
+          0,
+          1,
+          2,
+          3,
+          4
+        ],
+        "unsupported_claims": [],
+        "explanation": "B는 모든 개념을 충족합니다. 일시를 2026년 7월 18일 02:00~02:30 Asia/Seoul(종료는 예정)로 적었고, ap-northeast 지역의 전체 텍스트 검색만 중지된다고 밝혔습니다(개념 0). 열기·편집·저장·다운로드는 가능하고 별도 조치나 백업이 필요 없다고 안내했습니다(개념 1). 최신 문서 반영이 최대 20분 늦어질 수 있다고 적었습니다(개념 2). 검증이 끝난 뒤 최종 안내를 하겠다고 했고, 내부 노드명과 인덱스명은 공개하지 않는다고 했습니다(개념 3). 문의 경로로 상태 페이지와 support@example.test를 제시했고, 배정된 것은 회전조뿐이며 승인된 실명이 없다고 밝혔습니다(개념 4). 7월 18일이 토요일인지, 15분 간격 업데이트가 자료에 있는지도 확인했으며 둘 다 사실입니다. 일정이 이미 지난 날짜라는 점을 짚고 재확인이 필요하다고 한 것도 적절한 단서입니다."
+      }
+    ]
+  },
+  "usage": {
+    "input_tokens": 2,
+    "cache_creation_input_tokens": 7886,
+    "cache_read_input_tokens": 741,
+    "output_tokens": 2500,
+    "output_tokens_details": {
+      "thinking_tokens": 1396
+    },
+    "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+    },
+    "service_tier": "standard",
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 7886,
+      "ephemeral_5m_input_tokens": 0
+    },
+    "inference_geo": "not_available",
+    "iterations": [
+      {
+        "input_tokens": 2,
+        "output_tokens": 2500,
+        "cache_read_input_tokens": 741,
+        "cache_creation_input_tokens": 7886,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 0,
+          "ephemeral_1h_input_tokens": 7886
+        },
+        "type": "message"
+      }
+    ],
+    "speed": "standard"
+  },
+  "modelUsage": {
+    "claude-opus-5[1m]": {
+      "inputTokens": 2,
+      "outputTokens": 2500,
+      "cacheReadInputTokens": 741,
+      "cacheCreationInputTokens": 7886,
+      "webSearchRequests": 0,
+      "costUSD": 0.1417405,
+      "contextWindow": 1000000,
+      "maxOutputTokens": 128000,
+      "thinkingTokens": 1396,
+      "canonicalModel": "claude-opus-5",
+      "provider": "firstParty",
+      "costBasis": "list"
+    }
+  },
+  "total_cost_usd": 0.1417405,
+  "stop_reason": "tool_use",
+  "arm_mapping": {
+    "A": "baseline_snippets",
+    "B": "advisory"
+  },
+  "concept_count": 5
+}

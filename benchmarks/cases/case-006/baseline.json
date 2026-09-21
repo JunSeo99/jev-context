@@ -1,0 +1,53 @@
+{
+  "method": "BM25, k1=1.2, b=0.75, three files/two blocks each; not an agent baseline",
+  "task_sha256": "9c6c1b74a578989c7e69657e6850186fabbce7b2ac8ad5a387abe35e890bf057",
+  "paths": [
+    "communications/draft.md",
+    "docs/writing.md",
+    "history/april-notice.md"
+  ],
+  "selected": [
+    {
+      "path": "communications/draft.md",
+      "start_line": 15,
+      "end_line": 20,
+      "reason": "fixed BM25 top blocks",
+      "score": 29.766018894452912
+    },
+    {
+      "path": "communications/draft.md",
+      "start_line": 1,
+      "end_line": 9,
+      "reason": "fixed BM25 top blocks",
+      "score": 24.42901694425893
+    },
+    {
+      "path": "docs/writing.md",
+      "start_line": 15,
+      "end_line": 18,
+      "reason": "fixed BM25 top blocks",
+      "score": 23.419603994693155
+    },
+    {
+      "path": "docs/writing.md",
+      "start_line": 1,
+      "end_line": 9,
+      "reason": "fixed BM25 top blocks",
+      "score": 20.04647082266193
+    },
+    {
+      "path": "history/april-notice.md",
+      "start_line": 1,
+      "end_line": 8,
+      "reason": "fixed BM25 top blocks",
+      "score": 17.802098968077573
+    },
+    {
+      "path": "history/april-notice.md",
+      "start_line": 9,
+      "end_line": 14,
+      "reason": "fixed BM25 top blocks",
+      "score": 5.38674928123354
+    }
+  ]
+}

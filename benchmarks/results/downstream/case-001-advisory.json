@@ -1,0 +1,55 @@
+{
+  "result": "**결론: 120일 요청은 전체가 거부됩니다. 반환되는 행은 없고, 실행 시간은 약속할 수 없습니다.**\n\n- **허용 범위:** standard 등급의 한도는 90일입니다(settings/billing.toml:2). 기간은 `to - from`을 UTC 일 단위로 계산합니다(docs/csv.md:6, settings/billing.toml:6). 한도를 넘는 요청은 거부하며, 90일로 몰래 줄여서도 안 됩니다(docs/csv.md:7-8). 90일짜리 요청은 한도를 넘지 않으므로 받아들여집니다.\n- **90일 이하로 다시 요청할 때의 행:** `allow_closed = true`이므로 closed 인보이스를 포함할 수 있습니다(settings/billing.toml:5, docs/csv.md:11). voided 인보이스는 항상 제외합니다(docs/csv.md:12). 지금 코드는 `status=\"open\"`만 조회하므로 고쳐야 합니다(billing/export.py:20).\n- **컬럼:** `number, issued_on, amount_minor, currency` 순서입니다(docs/csv.md:14). `buyer_email`은 관리자를 포함한 모든 역할에서 빼야 합니다(docs/handling.md:5-7, docs/csv.md:15). 현재 코드의 `COLUMNS`에는 이 필드가 들어 있습니다(billing/export.py:4).\n- **검사:**\n  - 로그인만 확인하는 지금 코드와 달리 `account_admin` 역할을 확인해야 합니다(billing/export.py:8-9, docs/csv.md:4-5).\n  - 모든 페이지를 해당 계정에 묶습니다(docs/csv.md:5).\n  - 날짜 순서를 확인합니다(billing/export.py:12-13).\n  - 등급별 한도를 적용하고, 지금의 30일 고정값을 없앱니다(billing/export.py:14-15).\n  - 내보내기 페이지도 API와 같은 권한을 씁니다(docs/operations.md:7).\n  - 감사 이벤트에는 actor, account, 요청 기간, 행 수를 기록하고, CSV 내용은 넣지 않습니다(docs/handling.md:11-13).\n- **실행 시간:** 전체 크기 기준의 측정 기록이 없고, staging 데이터는 가짜입니다(docs/operations.md:8-9). 근거로 삼을 수 있는 것은 설계 제약뿐입니다. `page_size = 500`, 안정적인 번호 순서, cursor 해제, line item 설명 제외가 해당합니다(settings/billing.toml:4, docs/operations.md:12-14).\n\n**증거에 없는 정보:**\n- A의 실제 등급을 어떻게 확인하는지\n- 요청 파라미터 이름(`allow_closed`와 `include_closed`가 섞여 있음)\n- 거부된 요청도 감사 이벤트를 남기는지\n\n2025-11 노트는 폐기된 문서라서 따르지 않았습니다(notes/2025-11-billing.md:2,15).",
+  "usage": {
+    "input_tokens": 2,
+    "cache_creation_input_tokens": 4485,
+    "cache_read_input_tokens": 0,
+    "output_tokens": 2441,
+    "output_tokens_details": {
+      "thinking_tokens": 1338
+    },
+    "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+    },
+    "service_tier": "standard",
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 4485,
+      "ephemeral_5m_input_tokens": 0
+    },
+    "inference_geo": "not_available",
+    "iterations": [
+      {
+        "input_tokens": 2,
+        "output_tokens": 2441,
+        "cache_read_input_tokens": 0,
+        "cache_creation_input_tokens": 4485,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 0,
+          "ephemeral_1h_input_tokens": 4485
+        },
+        "type": "message"
+      }
+    ],
+    "speed": "standard"
+  },
+  "modelUsage": {
+    "claude-opus-5[1m]": {
+      "inputTokens": 2,
+      "outputTokens": 2441,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 4485,
+      "webSearchRequests": 0,
+      "costUSD": 0.105885,
+      "contextWindow": 1000000,
+      "maxOutputTokens": 128000,
+      "thinkingTokens": 1338,
+      "canonicalModel": "claude-opus-5",
+      "provider": "firstParty",
+      "costBasis": "list"
+    }
+  },
+  "total_cost_usd": 0.105885,
+  "stop_reason": "end_turn",
+  "input_sha256": "1603dc688ef285e837350a5b30be04b72f052a33c27d2cecf7bafdd2ec2a1bb4"
+}

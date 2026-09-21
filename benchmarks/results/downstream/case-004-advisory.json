@@ -1,0 +1,55 @@
+{
+  "result": "**결론:** 429(`Retry-After: 600`) 후에는 600초 뒤, 503 후에는 설정된 backoff 뒤에 재시도합니다. 삭제가 시작되면 대기 중인 재시도는 발송 없이 취소됩니다. 모든 시도는 같은 `X-Event-Id`를 쓰고, 첫 발송을 포함해 최대 6회입니다. 다만 현재 `worker.py`는 이 계약과 다르게 동작합니다.\n\n- **429, `Retry-After: 600`:** 올바른 정수이므로 backoff 대신 이 값을 씁니다. 상한 900초보다 작아서 600초 뒤 재시도합니다(docs/delivery.md:4,9-10; config/webhooks.toml:4).\n- **503:** 모든 5xx는 재시도하며, 429가 아니므로 `Retry-After`는 무시합니다. 재시도 순번에 따라 30→120→600→1800→3600초를 기다립니다(delivery.md:4,8,11; config:3).\n- **최대 시도 횟수:** 첫 발송을 포함해 6회이므로 재시도는 최대 5번입니다(delivery.md:7; config:2).\n- **재시도 전에 삭제가 시작된 경우:** 재시도를 실행하는 시점에 계정 상태를 다시 확인합니다. `deleting` 또는 `removed` 상태면 대기 중인 재시도를 취소하고, 수신자에게 연락하지 않고 내부에만 기록합니다. 삭제를 알리는 마지막 webhook도 보내지 않습니다(docs/lifecycle.md:4-9).\n- **이벤트 식별:** `X-Event-Id`는 저장된 이벤트 id로, 모든 시도에서 같습니다. 서명도 같은 payload를 대상으로 합니다. 전달은 at-least-once이므로 수신자는 이 id로 중복을 제거해야 합니다(delivery.md:14-16; docs/receiver-guide.md:4-6).\n- **현재 코드의 문제(hooks/worker.py:3-16):**\n  - 시도할 때마다 `uuid4`로 새 id를 만듭니다(:8).\n  - 5xx는 60초 고정으로 재시도합니다(:11-12).\n  - 429를 실패로 처리합니다(:13-14).\n  - 3xx를 전달 완료로 표시합니다(:15-16).\n  - 시도 횟수 상한과 계정 상태 재확인이 없습니다.\n  \n  notes/2025-webhooks.md는 폐기된 문서입니다(:2).\n- **Percentile 보장:** 약속할 수 없습니다. 운영 지연 데이터가 없고, 재시도 일정은 정책일 뿐입니다(receiver-guide.md:12-14).\n\n**근거 자료에 없는 정보:**\n- 이미 전송 중인 요청을 삭제 때문에 중단하는지\n- 네트워크 오류를 어떻게 감지하는지\n- 대시보드 재전송이 같은 id를 쓰는지(receiver-guide.md:19)",
+  "usage": {
+    "input_tokens": 2,
+    "cache_creation_input_tokens": 3312,
+    "cache_read_input_tokens": 1014,
+    "output_tokens": 2486,
+    "output_tokens_details": {
+      "thinking_tokens": 1395
+    },
+    "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+    },
+    "service_tier": "standard",
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 3312,
+      "ephemeral_5m_input_tokens": 0
+    },
+    "inference_geo": "not_available",
+    "iterations": [
+      {
+        "input_tokens": 2,
+        "output_tokens": 2486,
+        "cache_read_input_tokens": 1014,
+        "cache_creation_input_tokens": 3312,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 0,
+          "ephemeral_1h_input_tokens": 3312
+        },
+        "type": "message"
+      }
+    ],
+    "speed": "standard"
+  },
+  "modelUsage": {
+    "claude-opus-5[1m]": {
+      "inputTokens": 2,
+      "outputTokens": 2486,
+      "cacheReadInputTokens": 1014,
+      "cacheCreationInputTokens": 3312,
+      "webSearchRequests": 0,
+      "costUSD": 0.095787,
+      "contextWindow": 1000000,
+      "maxOutputTokens": 128000,
+      "thinkingTokens": 1395,
+      "canonicalModel": "claude-opus-5",
+      "provider": "firstParty",
+      "costBasis": "list"
+    }
+  },
+  "total_cost_usd": 0.095787,
+  "stop_reason": "end_turn",
+  "input_sha256": "8db9edf87a2aef63409e8aa6b668c1f2aae79bf2ff3e25c5b8848eb73e2aaa23"
+}

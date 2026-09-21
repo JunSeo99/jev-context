@@ -1,0 +1,35 @@
+[build-system]
+requires = ["hatchling>=1.25"]
+build-backend = "hatchling.build"
+
+[project]
+name = "jev-context"
+version = "0.1.0"
+description = "Source-grounded context advice with TypeSafe Jev"
+readme = "README.md"
+requires-python = ">=3.10"
+license = "MIT"
+authors = [{name = "JunSeo99"}]
+classifiers = ["Development Status :: 3 - Alpha", "Programming Language :: Python :: 3"]
+dependencies = []
+
+[project.optional-dependencies]
+live = ["typesafe-sdk>=0.7.0,<1"]
+eval = ["tiktoken>=0.8,<1"]
+dev = ["pytest>=8,<10", "build>=1.2,<2", "ruff>=0.11,<1"]
+
+[project.scripts]
+jev-context = "jev_context.cli:main"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/jev_context"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+
+[tool.ruff]
+target-version = "py310"
+line-length = 100
+
+[tool.ruff.lint]
+select = ["E4", "E7", "E9", "F", "I"]

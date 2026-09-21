@@ -1,0 +1,124 @@
+{
+  "id": "case-003",
+  "synthetic": true,
+  "label_status": "authored and frozen before evaluated outputs",
+  "obligations": [
+    {
+      "id": "o1",
+      "description": "Replace the extension-only, full-body read with detected-format and streamed size checks.",
+      "alternatives": [
+        [
+          {
+            "path": "attachments/upload.py",
+            "quote": "body = request.stream.read()"
+          },
+          {
+            "path": "docs/attachments.md",
+            "quote": "Accept PDF and ZIP only after extension and detected format agree."
+          },
+          {
+            "path": "docs/attachments.md",
+            "quote": "Count streamed bytes; Content-Length alone is not a limit check."
+          }
+        ]
+      ],
+      "critical": true
+    },
+    {
+      "id": "o2",
+      "description": "Configured PDF limit is 20 MiB; ZIP is 15 MiB compressed, 100 MiB expanded and 500 entries.",
+      "alternatives": [
+        [
+          {
+            "path": "config/attachments.yaml",
+            "quote": "pdf_bytes: 20971520\n  zip_bytes: 15728640\n  zip_expanded_bytes: 104857600\n  zip_entries: 500"
+          },
+          {
+            "path": "docs/attachments.md",
+            "quote": "Enforce compressed-byte, expanded-byte, and entry limits from config."
+          }
+        ]
+      ],
+      "critical": true
+    },
+    {
+      "id": "o3",
+      "description": "Archive violations including expansion are 422 invalid_archive; reject nested/traversal paths.",
+      "alternatives": [
+        [
+          {
+            "path": "docs/attachments.md",
+            "quote": "A ZIP failing any archive rule returns 422 with code invalid_archive."
+          },
+          {
+            "path": "docs/attachments.md",
+            "quote": "Nested archives are rejected; directory entries count toward the limit."
+          },
+          {
+            "path": "docs/attachments.md",
+            "quote": "Path traversal and absolute archive member paths are rejected."
+          }
+        ]
+      ],
+      "critical": true
+    },
+    {
+      "id": "o4",
+      "description": "Desktop 2.4 changes envelope only, preserving status and validation.",
+      "alternatives": [
+        [
+          {
+            "path": "docs/desktop.md",
+            "quote": "Desktop 2.4 requires {\"error\": code} for all upload failures."
+          },
+          {
+            "path": "docs/desktop.md",
+            "quote": "Keep the documented HTTP status for every client version."
+          },
+          {
+            "path": "docs/desktop.md",
+            "quote": "Older clients receive the same content validation as web clients."
+          }
+        ]
+      ],
+      "critical": true
+    },
+    {
+      "id": "o5",
+      "description": "Authorize an editor before reading and keep blobs private until transaction commits, cleaning failures.",
+      "alternatives": [
+        [
+          {
+            "path": "docs/access.md",
+            "quote": "A write requires the workspace editor role before reading the body."
+          },
+          {
+            "path": "docs/access.md",
+            "quote": "Temporary blobs remain private until their record transaction commits."
+          },
+          {
+            "path": "docs/access.md",
+            "quote": "If record creation fails, enqueue the temporary blob for deletion."
+          }
+        ]
+      ],
+      "critical": true
+    }
+  ],
+  "unanswerable_questions": [
+    {
+      "question_id": "q4",
+      "reason": "No upload volumes, file-size distribution, retention totals, or acceptance rates are supplied."
+    }
+  ],
+  "downstream_qa": {
+    "question": "A desktop 2.4 client sends a 14 MiB ZIP that expands to 160 MiB; a web client sends a 19 MiB PDF. Decide both outcomes and the rejection envelope.",
+    "expected_answer_concepts": [
+      "Reject the 14 MiB ZIP because 160 MiB exceeds the expanded cap, with HTTP 422 and the 2.4 string error envelope.",
+      "A 19 MiB PDF meets the size cap but still requires format and access checks.",
+      "Use streaming size validation and private transactional blob ownership.",
+      "Storage growth cannot be quantified without real upload volume and size distribution."
+    ],
+    "assessment_limit": "Evidence-grounded decision quality only; not a claim of code correctness or production safety."
+  }
+}

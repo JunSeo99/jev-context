@@ -1,0 +1,85 @@
+{
+  "result": "{\"grades\":[{\"answer_id\":\"A\",\"concepts_covered\":[0,1,2,3,4],\"unsupported_claims\":[],\"explanation\":\"A는 RC-411을 RC-410의 중복 청구로 보고 GBP 72.00(7200 minor unit) 전액 환불 대상으로 판단했습니다. 6월 기간을 사용했더라도 예외가 적용되고 RC-410은 정상 결제로 남는다는 점도 밝혔습니다(0). 좌석과 갱신일은 바뀌지 않으며, 중복 결제로 부여된 크레딧이 0이라 크레딧 조정도 없다고 적었습니다(1). 환불은 finance review를 거친 뒤 processor에 제출되고, 아직 발행되지 않았으니 '환불 완료'라고 쓰면 안 된다는 점도 분명히 했습니다(2). 기간은 제출 후 5–10 business days라는 추정치로만 안내했고, 입금일은 보장하지 않았습니다. reviewer가 아직 배정되지 않아 관리자 이름을 알려줄 수 없다는 점도 밝혔습니다(3). 영수증 번호와 공개 case id CS-184를 사용했고 evt_* id는 제외했습니다(4). 모든 내용이 자료로 뒷받침됩니다.\"},{\"answer_id\":\"B\",\"concepts_covered\":[],\"unsupported_claims\":[\"원장(ledger)과 영수증 자료, docs/money.md가 제공되지 않았다는 주장: 실제로는 billing/receipts.yaml과 docs/money.md가 자료에 있습니다.\",\"\\\"Your case is being handled by our billing team.\\\": 담당 팀이 배정되었다는 근거가 없습니다. 자료에는 reviewer가 아직 없고, 사건은 finance-review queue로 간다고 되어 있습니다.\",\"처리 기간을 약속하면 안 된다는 주장: docs/money.md는 제출 후 추정 5–10 business days를 안내하라고 규정합니다.\"],\"explanation\":\"B는 자료가 없다고 잘못 판단했습니다. 그래서 RC-411, £72, RC-410 유지를 특정하지 못하고 결정을 조건부 승인에 그쳤습니다(0 미충족). 좌석과 갱신일은 유지된다고 했지만, 크레딧은 확인할 수 없다며 조건문으로만 다뤄 '크레딧 불변'을 확정하지 않았습니다(1 미충족). finance review가 끝나지 않은 상태라는 설명이 없고, 초안에서는 'we'll refund'라고 약속하는 식으로 썼습니다(2 미충족). 5–10 business days 추정치가 없고 오히려 처리 기간을 약속하지 말라고 했습니다. 입금일을 보장하지 않고 관리자 이름을 쓰지 않은 것만 맞습니다(3 미충족). CS-184는 썼지만 영수증 번호가 없고, 내부 event id를 빼야 한다는 언급도 없습니다(4 미충족).\"}]}",
+  "structured_output": {
+    "grades": [
+      {
+        "answer_id": "A",
+        "concepts_covered": [
+          0,
+          1,
+          2,
+          3,
+          4
+        ],
+        "unsupported_claims": [],
+        "explanation": "A는 RC-411을 RC-410의 중복 청구로 보고 GBP 72.00(7200 minor unit) 전액 환불 대상으로 판단했습니다. 6월 기간을 사용했더라도 예외가 적용되고 RC-410은 정상 결제로 남는다는 점도 밝혔습니다(0). 좌석과 갱신일은 바뀌지 않으며, 중복 결제로 부여된 크레딧이 0이라 크레딧 조정도 없다고 적었습니다(1). 환불은 finance review를 거친 뒤 processor에 제출되고, 아직 발행되지 않았으니 '환불 완료'라고 쓰면 안 된다는 점도 분명히 했습니다(2). 기간은 제출 후 5–10 business days라는 추정치로만 안내했고, 입금일은 보장하지 않았습니다. reviewer가 아직 배정되지 않아 관리자 이름을 알려줄 수 없다는 점도 밝혔습니다(3). 영수증 번호와 공개 case id CS-184를 사용했고 evt_* id는 제외했습니다(4). 모든 내용이 자료로 뒷받침됩니다."
+      },
+      {
+        "answer_id": "B",
+        "concepts_covered": [],
+        "unsupported_claims": [
+          "원장(ledger)과 영수증 자료, docs/money.md가 제공되지 않았다는 주장: 실제로는 billing/receipts.yaml과 docs/money.md가 자료에 있습니다.",
+          "\"Your case is being handled by our billing team.\": 담당 팀이 배정되었다는 근거가 없습니다. 자료에는 reviewer가 아직 없고, 사건은 finance-review queue로 간다고 되어 있습니다.",
+          "처리 기간을 약속하면 안 된다는 주장: docs/money.md는 제출 후 추정 5–10 business days를 안내하라고 규정합니다."
+        ],
+        "explanation": "B는 자료가 없다고 잘못 판단했습니다. 그래서 RC-411, £72, RC-410 유지를 특정하지 못하고 결정을 조건부 승인에 그쳤습니다(0 미충족). 좌석과 갱신일은 유지된다고 했지만, 크레딧은 확인할 수 없다며 조건문으로만 다뤄 '크레딧 불변'을 확정하지 않았습니다(1 미충족). finance review가 끝나지 않은 상태라는 설명이 없고, 초안에서는 'we'll refund'라고 약속하는 식으로 썼습니다(2 미충족). 5–10 business days 추정치가 없고 오히려 처리 기간을 약속하지 말라고 했습니다. 입금일을 보장하지 않고 관리자 이름을 쓰지 않은 것만 맞습니다(3 미충족). CS-184는 썼지만 영수증 번호가 없고, 내부 event id를 빼야 한다는 언급도 없습니다(4 미충족)."
+      }
+    ]
+  },
+  "usage": {
+    "input_tokens": 2,
+    "cache_creation_input_tokens": 6884,
+    "cache_read_input_tokens": 741,
+    "output_tokens": 2159,
+    "output_tokens_details": {
+      "thinking_tokens": 1032
+    },
+    "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+    },
+    "service_tier": "standard",
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 6884,
+      "ephemeral_5m_input_tokens": 0
+    },
+    "inference_geo": "not_available",
+    "iterations": [
+      {
+        "input_tokens": 2,
+        "output_tokens": 2159,
+        "cache_read_input_tokens": 741,
+        "cache_creation_input_tokens": 6884,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 0,
+          "ephemeral_1h_input_tokens": 6884
+        },
+        "type": "message"
+      }
+    ],
+    "speed": "standard"
+  },
+  "modelUsage": {
+    "claude-opus-5[1m]": {
+      "inputTokens": 2,
+      "outputTokens": 2159,
+      "cacheReadInputTokens": 741,
+      "cacheCreationInputTokens": 6884,
+      "webSearchRequests": 0,
+      "costUSD": 0.1231955,
+      "contextWindow": 1000000,
+      "maxOutputTokens": 128000,
+      "thinkingTokens": 1032,
+      "canonicalModel": "claude-opus-5",
+      "provider": "firstParty",
+      "costBasis": "list"
+    }
+  },
+  "total_cost_usd": 0.1231955,
+  "stop_reason": "tool_use",
+  "arm_mapping": {
+    "A": "advisory",
+    "B": "baseline_snippets"
+  },
+  "concept_count": 5
+}

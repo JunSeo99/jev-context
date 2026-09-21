@@ -1,0 +1,141 @@
+{
+  "id": "case-006",
+  "synthetic": true,
+  "label_status": "authored and frozen before evaluated outputs",
+  "obligations": [
+    {
+      "id": "o1",
+      "description": "Current planned window is July 18, 2026, 02:00–02:30 Asia/Seoul in ap-northeast.",
+      "alternatives": [
+        [
+          {
+            "path": "operations/window.yaml",
+            "quote": "date: 2026-07-18\n  timezone: Asia/Seoul\n  start: \"02:00\"\n  end: \"02:30\""
+          },
+          {
+            "path": "operations/window.yaml",
+            "quote": "region: ap-northeast"
+          }
+        ]
+      ],
+      "critical": true
+    },
+    {
+      "id": "o2",
+      "description": "Only search is unavailable, with editing and downloads available and no backup action needed.",
+      "alternatives": [
+        [
+          {
+            "path": "operations/search.md",
+            "quote": "ap-northeast 지역의 전체 텍스트 검색만 일시 중지한다."
+          },
+          {
+            "path": "operations/search.md",
+            "quote": "문서 열기, 편집, 저장 및 파일 다운로드는 계속 가능하다."
+          },
+          {
+            "path": "operations/search.md",
+            "quote": "고객이 편집을 중지하거나 별도로 백업할 필요는 없다."
+          }
+        ],
+        [
+          {
+            "path": "support/briefing.md",
+            "quote": "7월 18일 02:00~02:30 Asia/Seoul에 검색 기능만 점검한다."
+          },
+          {
+            "path": "operations/window.yaml",
+            "quote": "region: ap-northeast"
+          },
+          {
+            "path": "support/briefing.md",
+            "quote": "열기, 편집, 저장, 다운로드는 사용할 수 있다."
+          },
+          {
+            "path": "support/briefing.md",
+            "quote": "고객은 평소처럼 작업해도 되며 별도 백업은 필요하지 않다."
+          }
+        ]
+      ],
+      "critical": true
+    },
+    {
+      "id": "o3",
+      "description": "New-document freshness can lag up to 20 minutes after search resumes.",
+      "alternatives": [
+        [
+          {
+            "path": "operations/search.md",
+            "quote": "검색 재개 뒤 최신 문서 반영에는 최대 20분이 걸릴 수 있다."
+          }
+        ],
+        [
+          {
+            "path": "support/briefing.md",
+            "quote": "검색 재개 뒤 새 문서가 나타날 때까지 최대 20분을 안내한다."
+          }
+        ]
+      ],
+      "critical": true
+    },
+    {
+      "id": "o4",
+      "description": "Exclude internal identifiers and phrase end time as planned until validation.",
+      "alternatives": [
+        [
+          {
+            "path": "docs/writing.md",
+            "quote": "내부 호스트명, 노드 식별자, 장애 우회 명령은 공개하지 않는다."
+          },
+          {
+            "path": "docs/writing.md",
+            "quote": "검증이 끝나기 전에는 정상화 완료를 약속하지 않는다."
+          },
+          {
+            "path": "docs/writing.md",
+            "quote": "예상 종료 시간은 예정이라고 표현한다."
+          }
+        ]
+      ],
+      "critical": true
+    },
+    {
+      "id": "o5",
+      "description": "Use public status/support channels and do not invent an approved personal contact.",
+      "alternatives": [
+        [
+          {
+            "path": "docs/writing.md",
+            "quote": "운영 문의 경로는 상태 페이지와 support@example.test다."
+          },
+          {
+            "path": "operations/window.yaml",
+            "quote": "status_page: https://status.example.test"
+          },
+          {
+            "path": "docs/writing.md",
+            "quote": "담당자 이름은 해당 공지용으로 승인된 경우에만 쓸 수 있다."
+          }
+        ]
+      ],
+      "critical": true
+    }
+  ],
+  "unanswerable_questions": [
+    {
+      "question_id": "q4",
+      "reason": "Only rotation names are given; no person is identified or approved for this notice."
+    }
+  ],
+  "downstream_qa": {
+    "question": "한국어 고객 공지에 들어갈 시간, 검색과 편집의 영향, 고객 조치, 복구 표현, 문의 경로를 작성하세요.",
+    "expected_answer_concepts": [
+      "2026년 7월 18일 02:00–02:30 Asia/Seoul 예정; ap-northeast 검색만 영향을 받는다.",
+      "문서 열기·편집·저장·다운로드는 가능하며 별도 고객 조치는 필요 없다.",
+      "재개 후 최신 문서 반영은 최대 20분 지연 가능하다.",
+      "검증 후 완료를 알리고 내부 식별자는 공개하지 않는다.",
+      "상태 페이지와 지원 이메일을 사용하며 승인된 담당 실명은 확인되지 않았다."
+    ],
+    "assessment_limit": "Evidence-grounded decision quality only; not a claim of code correctness or production safety."
+  }
+}

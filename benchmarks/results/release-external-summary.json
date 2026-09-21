@@ -1,0 +1,638 @@
+{
+  "schema_version": 1,
+  "source_sha256": "ec4d2858a665aba66a0f290ed603412ef4de32405b5d448b5793ec0224aead68",
+  "policy": {
+    "evidence_threshold": 0.45,
+    "constraint_threshold": 0.3,
+    "conflict_threshold": 0.65,
+    "max_context_chars": 24000,
+    "block_chars": 2400,
+    "workers": 4,
+    "short_source_chars": 1600,
+    "max_extra_chars": 4000
+  },
+  "tokenizer": "cl100k_base (comparison proxy, not Jev tokenizer)",
+  "aggregate": {
+    "baseline_snippets": {
+      "covered": 51,
+      "obligations": 56,
+      "micro_recall": 0.9107142857142857,
+      "all_critical_tasks": 4,
+      "tasks": 8,
+      "context_tokens": 31814
+    },
+    "baseline_full": {
+      "covered": 52,
+      "obligations": 56,
+      "micro_recall": 0.9285714285714286,
+      "all_critical_tasks": 5,
+      "tasks": 8,
+      "context_tokens": 55162
+    },
+    "all_sources": {
+      "covered": 56,
+      "obligations": 56,
+      "micro_recall": 1.0,
+      "all_critical_tasks": 8,
+      "tasks": 8,
+      "context_tokens": 2740189
+    },
+    "ranges": {
+      "covered": 37,
+      "obligations": 56,
+      "micro_recall": 0.6607142857142857,
+      "all_critical_tasks": 0,
+      "tasks": 8,
+      "context_tokens": 40108
+    },
+    "supplement": {
+      "covered": 50,
+      "obligations": 56,
+      "micro_recall": 0.8928571428571429,
+      "all_critical_tasks": 5,
+      "tasks": 8,
+      "context_tokens": 68529
+    },
+    "combined": {
+      "covered": 37,
+      "obligations": 56,
+      "micro_recall": 0.6607142857142857,
+      "all_critical_tasks": 1,
+      "tasks": 8,
+      "context_tokens": 69045
+    },
+    "advisory": {
+      "covered": 51,
+      "obligations": 56,
+      "micro_recall": 0.9107142857142857,
+      "all_critical_tasks": 4,
+      "tasks": 8,
+      "context_tokens": 45546
+    }
+  },
+  "cases": [
+    {
+      "id": "external-01",
+      "kind": "code",
+      "candidate_count": 28,
+      "error_counts": {
+        "empty": 1
+      },
+      "usage": {
+        "input_tokens": 2891,
+        "requests": 1,
+        "cache_hits": 83,
+        "models": [
+          "jev-1.13.0"
+        ],
+        "seconds": 0.869,
+        "failed_requests": 0,
+        "replayed": true
+      },
+      "outputs": {
+        "baseline_snippets": {
+          "recall": 1.0,
+          "obligations": 6,
+          "all_critical": true,
+          "context_tokens": 1743,
+          "context_chars": 5647
+        },
+        "baseline_full": {
+          "recall": 1.0,
+          "obligations": 6,
+          "all_critical": true,
+          "context_tokens": 4485,
+          "context_chars": 14958
+        },
+        "all_sources": {
+          "recall": 1.0,
+          "obligations": 6,
+          "all_critical": true,
+          "context_tokens": 303440,
+          "context_chars": 668022
+        },
+        "ranges": {
+          "recall": 0.6666666666666666,
+          "obligations": 6,
+          "all_critical": false,
+          "context_tokens": 1573,
+          "context_chars": 5141
+        },
+        "supplement": {
+          "recall": 1.0,
+          "obligations": 6,
+          "all_critical": true,
+          "context_tokens": 6541,
+          "context_chars": 20416
+        },
+        "combined": {
+          "recall": 0.6666666666666666,
+          "obligations": 6,
+          "all_critical": false,
+          "context_tokens": 3571,
+          "context_chars": 10381
+        },
+        "advisory": {
+          "recall": 1.0,
+          "obligations": 6,
+          "all_critical": true,
+          "context_tokens": 3096,
+          "context_chars": 9481
+        }
+      }
+    },
+    {
+      "id": "external-02",
+      "kind": "code",
+      "candidate_count": 30,
+      "error_counts": {
+        "empty": 1
+      },
+      "usage": {
+        "input_tokens": 2897,
+        "requests": 1,
+        "cache_hits": 86,
+        "models": [
+          "jev-1.13.0"
+        ],
+        "seconds": 0.734,
+        "failed_requests": 0,
+        "replayed": true
+      },
+      "outputs": {
+        "baseline_snippets": {
+          "recall": 0.875,
+          "obligations": 8,
+          "all_critical": false,
+          "context_tokens": 5395,
+          "context_chars": 18652
+        },
+        "baseline_full": {
+          "recall": 1.0,
+          "obligations": 8,
+          "all_critical": true,
+          "context_tokens": 10905,
+          "context_chars": 36394
+        },
+        "all_sources": {
+          "recall": 1.0,
+          "obligations": 8,
+          "all_critical": true,
+          "context_tokens": 307003,
+          "context_chars": 677887
+        },
+        "ranges": {
+          "recall": 0.25,
+          "obligations": 8,
+          "all_critical": false,
+          "context_tokens": 5603,
+          "context_chars": 17771
+        },
+        "supplement": {
+          "recall": 0.5,
+          "obligations": 8,
+          "all_critical": false,
+          "context_tokens": 7299,
+          "context_chars": 23592
+        },
+        "combined": {
+          "recall": 0.25,
+          "obligations": 8,
+          "all_critical": false,
+          "context_tokens": 8749,
+          "context_chars": 23854
+        },
+        "advisory": {
+          "recall": 0.875,
+          "obligations": 8,
+          "all_critical": false,
+          "context_tokens": 7254,
+          "context_chars": 22938
+        }
+      }
+    },
+    {
+      "id": "external-03",
+      "kind": "code",
+      "candidate_count": 27,
+      "error_counts": {
+        "empty": 1
+      },
+      "usage": {
+        "input_tokens": 2893,
+        "requests": 1,
+        "cache_hits": 82,
+        "models": [
+          "jev-1.13.0"
+        ],
+        "seconds": 0.551,
+        "failed_requests": 0,
+        "replayed": true
+      },
+      "outputs": {
+        "baseline_snippets": {
+          "recall": 1.0,
+          "obligations": 5,
+          "all_critical": true,
+          "context_tokens": 1293,
+          "context_chars": 4073
+        },
+        "baseline_full": {
+          "recall": 1.0,
+          "obligations": 5,
+          "all_critical": true,
+          "context_tokens": 3249,
+          "context_chars": 9784
+        },
+        "all_sources": {
+          "recall": 1.0,
+          "obligations": 5,
+          "all_critical": true,
+          "context_tokens": 301728,
+          "context_chars": 663662
+        },
+        "ranges": {
+          "recall": 0.6,
+          "obligations": 5,
+          "all_critical": false,
+          "context_tokens": 1960,
+          "context_chars": 5624
+        },
+        "supplement": {
+          "recall": 1.0,
+          "obligations": 5,
+          "all_critical": true,
+          "context_tokens": 3890,
+          "context_chars": 11467
+        },
+        "combined": {
+          "recall": 0.6,
+          "obligations": 5,
+          "all_critical": false,
+          "context_tokens": 2542,
+          "context_chars": 7070
+        },
+        "advisory": {
+          "recall": 1.0,
+          "obligations": 5,
+          "all_critical": true,
+          "context_tokens": 2091,
+          "context_chars": 6006
+        }
+      }
+    },
+    {
+      "id": "external-04",
+      "kind": "code",
+      "candidate_count": 27,
+      "error_counts": {
+        "empty": 1
+      },
+      "usage": {
+        "input_tokens": 2984,
+        "requests": 1,
+        "cache_hits": 83,
+        "models": [
+          "jev-1.13.0"
+        ],
+        "seconds": 0.523,
+        "failed_requests": 0,
+        "replayed": true
+      },
+      "outputs": {
+        "baseline_snippets": {
+          "recall": 0.8571428571428571,
+          "obligations": 7,
+          "all_critical": false,
+          "context_tokens": 1876,
+          "context_chars": 6472
+        },
+        "baseline_full": {
+          "recall": 0.8571428571428571,
+          "obligations": 7,
+          "all_critical": false,
+          "context_tokens": 3700,
+          "context_chars": 12464
+        },
+        "all_sources": {
+          "recall": 1.0,
+          "obligations": 7,
+          "all_critical": true,
+          "context_tokens": 301773,
+          "context_chars": 663749
+        },
+        "ranges": {
+          "recall": 0.7142857142857143,
+          "obligations": 7,
+          "all_critical": false,
+          "context_tokens": 3279,
+          "context_chars": 10690
+        },
+        "supplement": {
+          "recall": 0.8571428571428571,
+          "obligations": 7,
+          "all_critical": false,
+          "context_tokens": 5053,
+          "context_chars": 15984
+        },
+        "combined": {
+          "recall": 0.7142857142857143,
+          "obligations": 7,
+          "all_critical": false,
+          "context_tokens": 4577,
+          "context_chars": 14000
+        },
+        "advisory": {
+          "recall": 0.8571428571428571,
+          "obligations": 7,
+          "all_critical": false,
+          "context_tokens": 3198,
+          "context_chars": 9946
+        }
+      }
+    },
+    {
+      "id": "external-05",
+      "kind": "code",
+      "candidate_count": 28,
+      "error_counts": {
+        "empty": 1
+      },
+      "usage": {
+        "input_tokens": 2903,
+        "requests": 1,
+        "cache_hits": 84,
+        "models": [
+          "jev-1.13.0"
+        ],
+        "seconds": 0.55,
+        "failed_requests": 0,
+        "replayed": true
+      },
+      "outputs": {
+        "baseline_snippets": {
+          "recall": 1.0,
+          "obligations": 7,
+          "all_critical": true,
+          "context_tokens": 2489,
+          "context_chars": 7402
+        },
+        "baseline_full": {
+          "recall": 1.0,
+          "obligations": 7,
+          "all_critical": true,
+          "context_tokens": 4102,
+          "context_chars": 12164
+        },
+        "all_sources": {
+          "recall": 1.0,
+          "obligations": 7,
+          "all_critical": true,
+          "context_tokens": 304021,
+          "context_chars": 669618
+        },
+        "ranges": {
+          "recall": 0.7142857142857143,
+          "obligations": 7,
+          "all_critical": false,
+          "context_tokens": 2229,
+          "context_chars": 6780
+        },
+        "supplement": {
+          "recall": 1.0,
+          "obligations": 7,
+          "all_critical": true,
+          "context_tokens": 6821,
+          "context_chars": 18498
+        },
+        "combined": {
+          "recall": 0.7142857142857143,
+          "obligations": 7,
+          "all_critical": false,
+          "context_tokens": 4894,
+          "context_chars": 12891
+        },
+        "advisory": {
+          "recall": 1.0,
+          "obligations": 7,
+          "all_critical": true,
+          "context_tokens": 4137,
+          "context_chars": 11139
+        }
+      }
+    },
+    {
+      "id": "external-06",
+      "kind": "docs",
+      "candidate_count": 170,
+      "error_counts": {},
+      "usage": {
+        "input_tokens": 0,
+        "requests": 0,
+        "cache_hits": 195,
+        "models": [
+          "jev-1.13.0"
+        ],
+        "seconds": 0.124,
+        "failed_requests": 0,
+        "replayed": true
+      },
+      "outputs": {
+        "baseline_snippets": {
+          "recall": 0.8571428571428571,
+          "obligations": 7,
+          "all_critical": false,
+          "context_tokens": 3777,
+          "context_chars": 5004
+        },
+        "baseline_full": {
+          "recall": 0.8571428571428571,
+          "obligations": 7,
+          "all_critical": false,
+          "context_tokens": 4669,
+          "context_chars": 6465
+        },
+        "all_sources": {
+          "recall": 1.0,
+          "obligations": 7,
+          "all_critical": true,
+          "context_tokens": 407408,
+          "context_chars": 534829
+        },
+        "ranges": {
+          "recall": 0.8571428571428571,
+          "obligations": 7,
+          "all_critical": false,
+          "context_tokens": 4213,
+          "context_chars": 5948
+        },
+        "supplement": {
+          "recall": 0.8571428571428571,
+          "obligations": 7,
+          "all_critical": false,
+          "context_tokens": 13331,
+          "context_chars": 22127
+        },
+        "combined": {
+          "recall": 0.8571428571428571,
+          "obligations": 7,
+          "all_critical": false,
+          "context_tokens": 13953,
+          "context_chars": 22880
+        },
+        "advisory": {
+          "recall": 0.8571428571428571,
+          "obligations": 7,
+          "all_critical": false,
+          "context_tokens": 6107,
+          "context_chars": 9275
+        }
+      }
+    },
+    {
+      "id": "external-07",
+      "kind": "docs",
+      "candidate_count": 170,
+      "error_counts": {},
+      "usage": {
+        "input_tokens": 0,
+        "requests": 0,
+        "cache_hits": 195,
+        "models": [
+          "jev-1.13.0"
+        ],
+        "seconds": 0.119,
+        "failed_requests": 0,
+        "replayed": true
+      },
+      "outputs": {
+        "baseline_snippets": {
+          "recall": 0.75,
+          "obligations": 8,
+          "all_critical": false,
+          "context_tokens": 8870,
+          "context_chars": 11892
+        },
+        "baseline_full": {
+          "recall": 0.75,
+          "obligations": 8,
+          "all_critical": false,
+          "context_tokens": 10675,
+          "context_chars": 14085
+        },
+        "all_sources": {
+          "recall": 1.0,
+          "obligations": 8,
+          "all_critical": true,
+          "context_tokens": 407408,
+          "context_chars": 534829
+        },
+        "ranges": {
+          "recall": 0.75,
+          "obligations": 8,
+          "all_critical": false,
+          "context_tokens": 10352,
+          "context_chars": 13903
+        },
+        "supplement": {
+          "recall": 1.0,
+          "obligations": 8,
+          "all_critical": true,
+          "context_tokens": 15447,
+          "context_chars": 23397
+        },
+        "combined": {
+          "recall": 1.0,
+          "obligations": 8,
+          "all_critical": true,
+          "context_tokens": 14792,
+          "context_chars": 22581
+        },
+        "advisory": {
+          "recall": 0.75,
+          "obligations": 8,
+          "all_critical": false,
+          "context_tokens": 11085,
+          "context_chars": 16128
+        }
+      }
+    },
+    {
+      "id": "external-08",
+      "kind": "docs",
+      "candidate_count": 170,
+      "error_counts": {},
+      "usage": {
+        "input_tokens": 0,
+        "requests": 0,
+        "cache_hits": 195,
+        "models": [
+          "jev-1.13.0"
+        ],
+        "seconds": 0.126,
+        "failed_requests": 0,
+        "replayed": true
+      },
+      "outputs": {
+        "baseline_snippets": {
+          "recall": 1.0,
+          "obligations": 8,
+          "all_critical": true,
+          "context_tokens": 6371,
+          "context_chars": 8064
+        },
+        "baseline_full": {
+          "recall": 1.0,
+          "obligations": 8,
+          "all_critical": true,
+          "context_tokens": 13377,
+          "context_chars": 16257
+        },
+        "all_sources": {
+          "recall": 1.0,
+          "obligations": 8,
+          "all_critical": true,
+          "context_tokens": 407408,
+          "context_chars": 534829
+        },
+        "ranges": {
+          "recall": 0.75,
+          "obligations": 8,
+          "all_critical": false,
+          "context_tokens": 10899,
+          "context_chars": 14254
+        },
+        "supplement": {
+          "recall": 1.0,
+          "obligations": 8,
+          "all_critical": true,
+          "context_tokens": 10147,
+          "context_chars": 16060
+        },
+        "combined": {
+          "recall": 0.5,
+          "obligations": 8,
+          "all_critical": false,
+          "context_tokens": 15967,
+          "context_chars": 22592
+        },
+        "advisory": {
+          "recall": 1.0,
+          "obligations": 8,
+          "all_critical": true,
+          "context_tokens": 8578,
+          "context_chars": 12108
+        }
+      }
+    }
+  ],
+  "raw_artifact_sha256": "f3043a061d10b2c459eacb545eb79a33ed3eb687de50d4285fc7d5f24dcbb768",
+  "limitations": [
+    "Raw private sources, queries, quotes and paths are intentionally omitted.",
+    "Evidence selection only; no claims of executed code correctness.",
+    "Independent author used historical commit messages and diff statistics for code-task formulation.",
+    "Baseline frozen before gold by same independent preparation agent; not an independent second gold rater.",
+    "Final label review was interrupted by an account usage limit. Exact quoted evidence was validated locally.",
+    "v3 is a post-evaluation repair on these cases, not a fresh held-out performance estimate."
+  ]
+}

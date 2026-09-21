@@ -1,0 +1,127 @@
+{
+  "id": "case-005",
+  "synthetic": true,
+  "label_status": "authored and frozen before evaluated outputs",
+  "obligations": [
+    {
+      "id": "o1",
+      "description": "Current cache key uses only month and has one-hour TTL.",
+      "alternatives": [
+        [
+          {
+            "path": "reports/cache.py",
+            "quote": "key = f\"report:{month}\""
+          },
+          {
+            "path": "reports/cache.py",
+            "quote": "ttl=3600"
+          }
+        ]
+      ],
+      "critical": false
+    },
+    {
+      "id": "o2",
+      "description": "Key by team, month, viewer, role epoch, and configured key version with 300-second TTL.",
+      "alternatives": [
+        [
+          {
+            "path": "docs/reporting.md",
+            "quote": "캐시 키에는 team_id, month, viewer_id, role_epoch, key_version을 넣는다."
+          },
+          {
+            "path": "docs/reporting.md",
+            "quote": "캐시 TTL은 reports 설정의 ttl_seconds를 따른다."
+          },
+          {
+            "path": "config/reports.yaml",
+            "quote": "ttl_seconds: 300\n  key_version: 2"
+          }
+        ]
+      ],
+      "critical": true
+    },
+    {
+      "id": "o3",
+      "description": "Authorize before lookup, denying disabled or departed users even on cache hit.",
+      "alternatives": [
+        [
+          {
+            "path": "docs/requests.md",
+            "quote": "권한 검사는 캐시를 읽기 전에 수행한다."
+          },
+          {
+            "path": "docs/requests.md",
+            "quote": "탈퇴했거나 비활성화된 사용자는 캐시 값이 있어도 거부한다."
+          }
+        ]
+      ],
+      "critical": true
+    },
+    {
+      "id": "o4",
+      "description": "Support impersonation bypasses read/write cache and returns no-store.",
+      "alternatives": [
+        [
+          {
+            "path": "docs/requests.md",
+            "quote": "가장 중인 지원 세션은 공유 캐시를 읽거나 쓰지 않는다."
+          },
+          {
+            "path": "docs/requests.md",
+            "quote": "지원 세션의 응답에는 Cache-Control: no-store를 설정한다."
+          }
+        ]
+      ],
+      "critical": true
+    },
+    {
+      "id": "o5",
+      "description": "Data changes invalidate team/month; role changes prevent reusing old privilege results.",
+      "alternatives": [
+        [
+          {
+            "path": "docs/reporting.md",
+            "quote": "실적 행이 바뀌면 해당 팀과 월의 캐시를 모두 무효화한다."
+          },
+          {
+            "path": "docs/reporting.md",
+            "quote": "역할 변경 시 role_epoch를 증가시켜 이전 권한의 값을 재사용하지 않는다."
+          }
+        ],
+        [
+          {
+            "path": "docs/reporting.md",
+            "quote": "실적 행이 바뀌면 해당 팀과 월의 캐시를 모두 무효화한다."
+          },
+          {
+            "path": "docs/team-admin.md",
+            "quote": "역할을 바꾸면 해당 사용자의 role_epoch가 증가한다."
+          },
+          {
+            "path": "docs/team-admin.md",
+            "quote": "이전 role_epoch로 저장한 보고서는 이후 요청에 쓰지 않는다."
+          }
+        ]
+      ],
+      "critical": true
+    }
+  ],
+  "unanswerable_questions": [
+    {
+      "question_id": "q4",
+      "reason": "Request frequency and viewer/month reuse distribution are missing; the historical 90% is explicitly a target."
+    }
+  ],
+  "downstream_qa": {
+    "question": "같은 팀의 관리자와 일반 구성원이 같은 월간 보고서를 조회하고, 이후 구성원 역할이 바뀐 경우 캐시를 어떻게 처리해야 하는지 설명하세요.",
+    "expected_answer_concepts": [
+      "팀·월·사용자·role_epoch·키 버전을 분리하며 TTL은 300초다.",
+      "관리자는 팀 전체, 구성원은 본인 행만 받는다; 캐시 조회 전 권한을 확인한다.",
+      "역할 변경은 새 epoch를 사용하고 행 변경은 팀/월 캐시를 무효화한다.",
+      "지원 가장은 캐시를 우회하고 no-store를 사용한다.",
+      "과거 90%는 목표일 뿐이며 적중률을 계산할 자료는 없다."
+    ],
+    "assessment_limit": "Evidence-grounded decision quality only; not a claim of code correctness or production safety."
+  }
+}

@@ -1,0 +1,55 @@
+{
+  "result": "## 결정\n\n환불 대상은 **RC-411**, 금액은 **GBP 72.00**입니다. ledger 값 `amount_minor: 7200`은 minor unit(펜스) 기준입니다. RC-411은 RC-410을 반복 청구한 건입니다. **RC-410**은 6월 갱신의 정상 결제이므로 그대로 유지합니다. 6월 이용 기간을 이미 사용했더라도 중복 청구 예외가 적용됩니다.\n(billing/receipts.yaml:4-13; docs/refunds.md:4-8; support/playbook.md:4-8; support/case.md:13)\n\n좌석 해지나 갱신일 변경은 없습니다. 중복 결제로 부여된 크레딧이 0이므로 크레딧 조정도 없습니다.\n(docs/refunds.md:11-13; billing/receipts.yaml:14-17; support/case.md:14)\n\n## 핵심 약속 초안 (en-GB, case.md:20)\n\n> \"We've confirmed RC-411 (GBP 72.00) duplicated your June renewal RC-410. It's eligible for a full refund; RC-410 stays as your valid payment. Your seats, renewal date and credits are unaffected. Our finance team reviews the refund before it's submitted to the payment processor. After submission, banks typically post refunds within an estimated 5–10 business days, but your card issuer controls the timing, so we can't guarantee a date. Reference: CS-184.\"\n\n## 제약과 누락 정보\n\n- \"환불 완료\"라고 쓰면 안 됩니다. 아직 finance review 전이고 processor refund id가 없으며, 환불도 발행되지 않았습니다. (docs/money.md:4-8; support/case.md:12; support/playbook.md:17)\n- 고객이 요청한 은행 입금 확정일은 약속할 수 없습니다. (docs/money.md:7; support/playbook.md:18)\n- 고객이 요청한 관리자 이름도 드릴 수 없습니다. 담당 reviewer는 queue 접수 후에 배정되며, 현재 미배정입니다. 내부 queue 정보는 공개 답변에 넣지 않습니다. (docs/money.md:16-18; support/playbook.md:17)\n- `evt_*` id는 넣지 않습니다. 카드 정보도 요청하지 않습니다. (docs/money.md:12, 19)\n- 지원 시간과 휴일 일정은 자료에 없습니다. (support/playbook.md:19)\n- 이 답변은 초안이며 발송하지 않습니다. (support/case.md:19)",
+  "usage": {
+    "input_tokens": 2,
+    "cache_creation_input_tokens": 3352,
+    "cache_read_input_tokens": 1014,
+    "output_tokens": 2589,
+    "output_tokens_details": {
+      "thinking_tokens": 1690
+    },
+    "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+    },
+    "service_tier": "standard",
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 3352,
+      "ephemeral_5m_input_tokens": 0
+    },
+    "inference_geo": "not_available",
+    "iterations": [
+      {
+        "input_tokens": 2,
+        "output_tokens": 2589,
+        "cache_read_input_tokens": 1014,
+        "cache_creation_input_tokens": 3352,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 0,
+          "ephemeral_1h_input_tokens": 3352
+        },
+        "type": "message"
+      }
+    ],
+    "speed": "standard"
+  },
+  "modelUsage": {
+    "claude-opus-5[1m]": {
+      "inputTokens": 2,
+      "outputTokens": 2589,
+      "cacheReadInputTokens": 1014,
+      "cacheCreationInputTokens": 3352,
+      "webSearchRequests": 0,
+      "costUSD": 0.09876199999999999,
+      "contextWindow": 1000000,
+      "maxOutputTokens": 128000,
+      "thinkingTokens": 1690,
+      "canonicalModel": "claude-opus-5",
+      "provider": "firstParty",
+      "costBasis": "list"
+    }
+  },
+  "total_cost_usd": 0.09876199999999999,
+  "stop_reason": "end_turn",
+  "input_sha256": "82738dd3e30525c68caa020d04b5bc238aabfc62624a95baeb06db4d0cde36c8"
+}

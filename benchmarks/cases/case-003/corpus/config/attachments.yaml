@@ -1,0 +1,14 @@
+accepted:
+  pdf_bytes: 20971520
+  zip_bytes: 15728640
+  zip_expanded_bytes: 104857600
+  zip_entries: 500
+transport:
+  read_chunk_bytes: 65536
+  read_deadline_seconds: 45
+preview:
+  first_pages: 3
+  thumbnail_width: 320
+cleanup:
+  quarantine_hours: 24
+  orphan_scan_hour: 4

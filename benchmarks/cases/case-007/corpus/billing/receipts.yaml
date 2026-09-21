@@ -1,0 +1,17 @@
+currency: GBP
+period: 2026-06
+scheduled:
+  receipt: RC-410
+  amount_minor: 7200
+  event: evt_renew_61
+  settled_at: 2026-06-01T00:10:00Z
+duplicate:
+  receipt: RC-411
+  amount_minor: 7200
+  event: evt_retry_62
+  settled_at: 2026-06-01T00:12:00Z
+  repeats: RC-410
+usage:
+  seats: 6
+  active_days: 11
+  credits_granted_by_duplicate: 0
