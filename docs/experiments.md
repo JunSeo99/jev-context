@@ -39,7 +39,7 @@ v3 repairs the destructive behavior by preserving every original planned source 
 
 This repair preserved the baseline's 51/56 coverage but **recovered none of the five remaining obligations**, while adding 43.2% packet tokens. Therefore the current external results do not justify automatic supplementation either. The tool should remain an explicitly invoked research/advice component. v3 was designed after observing the v2 failures and its external numbers are regression results, not held-out validation.
 
-The remaining misses concern a multi-part discovery/archive contract, an upstream paragraph splitter's unbounded-token edge case, an amendment that retained an older publication control, and a newer consent implementation plus its conflicting preference rule. Some relevant blocks scored highly but lost under the supplement budget; other dependencies scored low. Raising thresholds alone does not solve either problem.
+The remaining misses involved evidence split across several sources and rules modified by later amendments. Some relevant blocks scored highly but lost under the supplement budget; other dependencies scored low. Raising thresholds alone does not solve either problem.
 
 The entire private candidate set contains very large lockfiles. Comparing with that multi-million-token ceiling would exaggerate savings, so it is not used as an operational baseline here. Private raw queries, documents, paths, quotes and traces are omitted from this repository. Anonymous numerical exports are included.
 

@@ -4,7 +4,7 @@ Source-grounded context advice for coding and document agents, using [TypeSafe J
 
 Jev reads candidate sources outside the agent's conversation. This package returns exact source ranges, potential constraints, contrary evidence, and questions without matching evidence. The calling agent decides what to read. Source hashes make excerpts verifiable.
 
-**Experimental, advisory API.** In the real-world evaluation, automatic range replacement lost evidence. The default now preserves the caller's planned ranges and bounds supplementary context. It preserved baseline recall but did not improve it on those eight tasks. Do not enable automatic context replacement on the strength of the synthetic results. This is an independent project, not an official TypeSafe SDK. It does not generate summaries, discover all necessary files, or guarantee sufficient context. The repository is prepared under MIT; a private GitHub repository is not a public release.
+**Experimental, advisory API.** In the real-world evaluation, automatic range replacement lost evidence. The default now preserves the caller's planned ranges and bounds supplementary context. It preserved baseline recall but did not improve it on those eight tasks. Do not enable automatic context replacement on the strength of the synthetic results. This is an independent project, not an official TypeSafe SDK. It does not generate summaries, discover all necessary files, or guarantee sufficient context. Released under the MIT license.
 
 ## Install and try
 
